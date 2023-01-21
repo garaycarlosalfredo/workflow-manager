@@ -1,6 +1,8 @@
 import { ApolloServer } from '@apollo/server';
 import { startServerAndCreateLambdaHandler } from '@as-integrations/aws-lambda'; //highlight-line
 
+const {APP_VERSION} = process.env
+
 const typeDefs = `#graphql
   type Query {
     hello: String
@@ -9,7 +11,7 @@ const typeDefs = `#graphql
 
 const resolvers = {
   Query: {
-    hello: () => 'world',
+    hello: () => `world version: ${APP_VERSION}`,
   },
 };
 

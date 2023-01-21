@@ -39,11 +39,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.graphqlHandler = void 0;
 var server_1 = require("@apollo/server");
 var aws_lambda_1 = require("@as-integrations/aws-lambda"); //highlight-line
-var APP_VERSION = process.env.APP_VERSION;
 var typeDefs = "#graphql\n  type Query {\n    hello: String\n  }\n";
 var resolvers = {
     Query: {
-        hello: function () { return "world version: ".concat(APP_VERSION); },
+        hello: function () { return 'world'; },
     },
 };
 var server = new server_1.ApolloServer({

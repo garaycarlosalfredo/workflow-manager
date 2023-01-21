@@ -2,6 +2,8 @@ service: apollo-lambda
 provider:
   name: aws
   runtime: nodejs16.x
+  environment:
+    APP_VERSION: ${file(./package.json):version}
   httpApi:
     cors: true
 functions:
