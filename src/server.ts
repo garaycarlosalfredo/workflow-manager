@@ -1,24 +1,8 @@
 import { ApolloServer } from '@apollo/server';
 import { startServerAndCreateLambdaHandler } from '@as-integrations/aws-lambda'; //highlight-line
+import  { buildSchema } from "./schema"; // Build schema for Apollo server
 
-const {APP_VERSION} = process.env
-
-const typeDefs = `#graphql
-  type Query {
-    hello: String
-  }
-`;
-
-const resolvers = {
-  Query: {
-    hello: () => `world version: ${APP_VERSION}`,
-  },
-};
-
-const server = new ApolloServer<MyContext>({
-  typeDefs,
-  resolvers,
-});
+const server = new ApolloServer<MyContext>({ schema: buildSchema() });
 
 // This final export is important!
 export const graphqlHandler = startServerAndCreateLambdaHandler(server, {

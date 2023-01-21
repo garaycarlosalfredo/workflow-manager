@@ -4,6 +4,7 @@ provider:
   runtime: nodejs16.x
   environment:
     APP_VERSION: ${file(./package.json):version}
+    APP_ENV: ${param:environment, 'dev'}
   httpApi:
     cors: true
 functions:
