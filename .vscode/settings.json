@@ -11,7 +11,7 @@
     },
     "editor.formatOnSave": true,
     "javascript.format.enable": false,
-    "beautify.ignore": ["**/*.js", "**/*.jsx"],
+    //"beautify.ignore": ["**/*.js", "**/*.jsx"],
     "workbench.colorCustomizations": {
       "activityBar.activeBackground": "#3399ff",
       "activityBar.activeBorder": "#bf0060",
