@@ -102,3 +102,8 @@ dist
 
 # TernJS port file
 .tern-port
+
+#Typescript
+# Ignore built ts files
+.dist/**/*
+.build/**/*
