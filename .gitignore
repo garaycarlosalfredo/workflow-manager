@@ -105,5 +105,5 @@ dist
 
 #Typescript
 # Ignore built ts files
-.dist/**/*
-.build/**/*
+*/.dist/**/*
+*/.build/**/*
