@@ -1,0 +1,30 @@
+service: booking-organizer-lambda-user
+provider:
+  name: aws
+  runtime: nodejs16.x
+  environment:
+    APP_VERSION: ${file(./package.json):version}
+  httpApi:
+    cors: true
+functions:
+  graphql:
+    # Make sure your file path is correct!
+    # (e.g., if your file is in the root folder use server.graphqlHandler )
+    # The format is: <FILENAME>.<HANDLER>
+    handler: src/user.userHandler # highlight-line
+    events:
+      - httpApi:
+          path: /
+          method: POST
+      - httpApi:
+          path: /
+          method: GET
+# Omit the following lines if you aren't using TS!
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+custom:
+  serverless-offline:
+    httpPort: 4000
+    websocketPort: 4001
+    lambdaPort: 4002

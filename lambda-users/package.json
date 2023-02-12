@@ -1,0 +1,25 @@
+{
+  "name": "booking-organizer-lambda-user",
+  "version": "1.0.0",
+  "description": "aws lambda api",
+  "main": "src/user.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "sls offline --param='environment=development'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garaycarlosalfredo/booking-organizer-lambda-user.git"
+  },
+  "author": "Garay Carlos Alfredo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/garaycarlosalfredo/booking-organizer-lambda-user/issues"
+  },
+  "homepage": "https://github.com/garaycarlosalfredo/booking-organizer-lambda-user#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "serverless-offline": "^12.0.4",
+    "serverless-plugin-typescript": "^2.1.4"
+  }
+}
