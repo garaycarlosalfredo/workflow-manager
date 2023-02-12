@@ -8,6 +8,10 @@ task and appointmen organizer
 
 [![My Skills](https://skillicons.dev/icons?i=aws,nodejs,graphql,ts,vscode)](https://skillicons.dev)
 
+## Structure
+
+![image](https://user-images.githubusercontent.com/68791092/218328270-9acd24db-7709-475f-9cd8-f955179253d5.png)
+
 ## My contact
 
 Garay Carlos Alfredo :rocket:
