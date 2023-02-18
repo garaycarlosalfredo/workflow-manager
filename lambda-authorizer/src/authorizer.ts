@@ -1,7 +1,21 @@
+import { eventBody } from "./utils/formatters";
+const { APP_ENV, APP_TEST } = process.env;
+
 export async function authorizerHandler(event, context) {
-  console.info("context", context);
+  const dummyCheck = {
+    email: "user@email",
+    password: "abc123",
+  };
+  const inputLogin = eventBody(event);
+  const isAuth = dummyCheck.email === inputLogin.email ? true : false;
+
   return {
-    event,
-    message: "Go Serverless v3! Your function executed successfully! authorizer",
+    statusCode: 200,
+    body: JSON.stringify({
+      var: APP_TEST,
+      env: APP_ENV,
+      isAuth,
+      message: "hello world",
+    }),
   };
 }

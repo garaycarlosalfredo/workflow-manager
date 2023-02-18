@@ -1,13 +1,16 @@
 service: booking-organizer-lambda-authorizer
 provider:
   name: aws
+  stage: ${opt:stage, 'dev'}
   runtime: nodejs16.x
   environment:
     APP_VERSION: ${file(./package.json):version}
+    APP_ENV: ${self:provider.stage}
+    APP_TEST: ${file(./config/${self:provider.stage}.json):aws.test}
   httpApi:
     cors: true
 functions:
-  graphql:
+  authorizer:
     # Make sure your file path is correct!
     # (e.g., if your file is in the root folder use server.graphqlHandler )
     # The format is: <FILENAME>.<HANDLER>
