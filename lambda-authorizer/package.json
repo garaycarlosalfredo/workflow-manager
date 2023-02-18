@@ -1,0 +1,25 @@
+{
+  "name": "booking-organizer-lambda-authorizer",
+  "version": "1.0.0",
+  "description": "aws lambda api",
+  "main": "src/authorizer.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "sls offline --param='environment=development'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garaycarlosalfredo/booking-organizer-lambda-authorizer.git"
+  },
+  "author": "Garay Carlos Alfredo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/garaycarlosalfredo/booking-organizer-lambda-authorizer/issues"
+  },
+  "homepage": "https://github.com/garaycarlosalfredo/booking-organizer-lambda-authorizer#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "serverless-offline": "^12.0.4",
+    "serverless-plugin-typescript": "^2.1.4"
+  }
+}
