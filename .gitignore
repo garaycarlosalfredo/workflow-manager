@@ -109,4 +109,6 @@ dist
 */.build/**/*
 
 #Enviroment variable
-*/config/*
+*/config/dev.json
+*/config/qa.json
+*/config/prod.json
