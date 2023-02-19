@@ -1,0 +1,8 @@
+input UserSignIn {
+  email: String
+  password: String
+}
+
+type Mutation {
+  signInUser(input: UserSignIn): String
+}

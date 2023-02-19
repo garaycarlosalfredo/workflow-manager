@@ -15,7 +15,7 @@ export async function authorizerHandler(event, context) {
       var: APP_TEST,
       env: APP_ENV,
       isAuth,
-      message: "hello world",
+      message: "hello world from authorizer",
     }),
   };
 }
