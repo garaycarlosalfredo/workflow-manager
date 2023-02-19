@@ -1,5 +1,5 @@
 {
-  "name": "booking-organizer-lambda-authorizer",
+  "name": "test-lambda-authorizer",
   "version": "1.0.0",
   "description": "aws lambda api",
   "main": "src/authorizer.ts",

@@ -1,8 +1,8 @@
 {
-  "name": "booking-orinazer",
+  "name": "test-server",
   "version": "1.0.0",
   "description": "serverless server",
-  "main": "server.js",
+  "main": "src/server.ts",
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -21,7 +21,6 @@
     "graphql": "^16.6.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.16",
     "serverless-offline": "^12.0.4",
     "serverless-plugin-typescript": "^2.1.4"
   }
