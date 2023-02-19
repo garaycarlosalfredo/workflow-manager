@@ -112,3 +112,4 @@ dist
 */config/dev.json
 */config/qa.json
 */config/prod.json
+*/config/remote.json

@@ -1,10 +1,12 @@
 service: apollo-lambda
 provider:
   name: aws
+  stage: ${opt:stage, 'dev'}
   runtime: nodejs16.x
   environment:
     APP_VERSION: ${file(./package.json):version}
     APP_ENV: ${param:environment, 'dev'}
+    URL_USERS: ${file(./config/${self:provider.stage}.json):lambdaUsers.url}
   httpApi:
     cors: true
 functions:

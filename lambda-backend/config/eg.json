@@ -1,0 +1,12 @@
+{
+    "aws": {
+        "region": "us-west-1",
+        "logRetentionInDays": 7,
+        "dynamo": {
+            "table": "table"
+        }
+    },
+    "lambdaAuthorizer":{"url":"url-authorizer"},
+    "lambdaUsers": {"url":"url-users"}
+
+}
