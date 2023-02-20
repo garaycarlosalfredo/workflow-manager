@@ -27,3 +27,8 @@ functions:
 plugins:
   - serverless-plugin-typescript
   - serverless-offline
+custom:
+  serverless-offline:
+    httpPort: 4000
+    websocketPort: 4001
+    lambdaPort: 4002
