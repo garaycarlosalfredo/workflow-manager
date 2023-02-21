@@ -1,0 +1,5 @@
+.media-login-buttons {
+  margin: 2em;
+  display: flex;
+  justify-items: center;
+}

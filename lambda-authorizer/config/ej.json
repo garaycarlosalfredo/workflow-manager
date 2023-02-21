@@ -1,5 +1,11 @@
 {
     "aws": {
-        "test": "variable de prueba ej"
+        "test": "variable de prueba ejemplo"
+    },
+    "google":{
+        "client_id" : "client_id",
+        "client_secret":"client_secret",
+        "redirect_url": "redirect_url",
+        "scopes": "scopes;separate;like;this"
     }
 }
