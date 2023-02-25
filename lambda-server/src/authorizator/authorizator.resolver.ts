@@ -1,8 +1,9 @@
 const { APP_VERSION, APP_ENV } = process.env;
-const {  signIn } = require("./authorizator.ts");
+const { signIn, signInGoogle } = require("./authorizator.ts");
 
 module.exports = {
   Mutation: {
-    signInUser: signIn
+    signInUser: signIn,
+    signInUserMediaGoogle: signInGoogle,
   },
 };

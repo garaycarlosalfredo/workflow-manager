@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "sls offline --param='environment=development' --reloadHandler",
     "start.remote": "sls offline --stage remote --param='environment=development' --reloadHandler",
-    "dev": "nodemon ."
+    "dev": "nodemon .",
+    "link": "link typescript"
   },
   "dependencies": {
     "@apollo/server": "^4.3.1",

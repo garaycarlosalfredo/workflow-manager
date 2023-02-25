@@ -3,6 +3,11 @@ input UserSignIn {
   password: String
 }
 
+input MediaLoginGoogle {
+  credential: String
+}
+
 type Mutation {
   signInUser(input: UserSignIn): String
+  signInUserMediaGoogle(input: MediaLoginGoogle): String
 }
