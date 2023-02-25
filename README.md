@@ -10,7 +10,7 @@ task and appointmen organizer
 
 ## Structure
 
-![image](https://user-images.githubusercontent.com/68791092/218328270-9acd24db-7709-475f-9cd8-f955179253d5.png)
+![image](https://user-images.githubusercontent.com/68791092/221374709-bedc8dfc-9af5-4452-a58d-34aca0e0b32e.png)
 
 ## My contact
 
