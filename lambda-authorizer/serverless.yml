@@ -31,19 +31,13 @@ functions:
     # Make sure your fileurlGenerator path is correct!
     # (e.g., if your file is in the root folder use server.graphqlHandler )
     # The format is: <FILENAME>.<HANDLER>
-    handler: src/urlGenerator.urlGeneratorHandler # highlight-line
+    handler: src/media-login.mediaLoginHandler # highlight-line
     events:
       - httpApi:
-          path: getMediaUrlAuthentication/
+          path: google/
           method: POST
       - httpApi:
-          path: getMediaUrlAuthentication/
-          method: GET
-      - httpApi:
-          path: oauth2/idresponse/
-          method: POST
-      - httpApi:
-          path: oauth2/idresponse/
+          path: google/
           method: GET
 # Omit the following lines if you aren't using TS!
 plugins:
