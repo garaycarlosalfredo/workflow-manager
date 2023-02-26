@@ -12,7 +12,7 @@ export const graphqlHandler = startServerAndCreateLambdaHandler(server, {
       lambdaEvent: event,
       lambdaContext: {
         ...context,
-        postRequest, // agrega la función como una propiedad del objeto lambdaContext
+        postRequest, // Add function as property or lambdaContext
       },
     };
   },
