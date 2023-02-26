@@ -11,7 +11,9 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "js-cookie": "^3.0.1",
     "react": "^18.2.0",
+    "react-cookie": "^4.1.1",
     "react-dom": "^18.2.0",
     "react-relay": "^14.1.0",
     "react-scripts": "5.0.1",
@@ -59,6 +61,7 @@
     ]
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.3",
     "babel-plugin-relay": "^14.1.0",
     "graphql": "^16.6.0",
     "relay-compiler": "^14.1.0"

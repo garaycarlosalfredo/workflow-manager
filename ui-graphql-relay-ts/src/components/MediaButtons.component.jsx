@@ -2,10 +2,12 @@ import React from "react";
 import { useRelayEnvironment } from "react-relay";
 import SignInUserMutation from "../mutations/SignInUserMutation.mutation";
 import { GoogleLogin } from "@react-oauth/google";
+import { useCookies } from "react-cookie";
 import "./MediaButtons.component.css";
 
 const MediaButtons = () => {
   const environment = useRelayEnvironment();
+  const [cookies, setCookie, removeCookie] = useCookies(["auth_token"]);
   const googleLogin = (values) => {
     SignInUserMutation(environment, values)
       .then((response) => {
@@ -16,6 +18,7 @@ const MediaButtons = () => {
       });
   };
   const formLogin = (values) => {
+    removeCookie("auth_token", { path: "/" });
     SignInUserMutation(environment, values)
       .then((response) => {
         console.log("response: ", response);
@@ -41,10 +44,14 @@ const MediaButtons = () => {
       <div className="google-login-button-container">
         <GoogleLogin
           onSuccess={(credentialResponse) => {
+            setCookie("auth_token", credentialResponse.credential, {
+              path: "/",
+              expires: new Date(Date.now() + 60 * 60 * 1000),
+            });
             googleLogin({
               credential: credentialResponse.credential,
             });
-            console.log(credentialResponse);
+            console.log("credentialResponse", credentialResponse);
           }}
           onError={() => {
             console.log("Login Failed");

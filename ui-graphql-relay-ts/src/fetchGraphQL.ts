@@ -1,10 +1,12 @@
+import Cookies from "js-cookie";
 // your-app-name/src/fetchGraphQL.js
 async function fetchGraphQL(text, variables) {
   //const REACT_APP_GITHUB_AUTH_TOKEN = process.env.REACT_APP_GITHUB_AUTH_TOKEN;
-
+  //Cookies.set("auth_token", "my_token", { expires: yarn s1 / 24 }); // To test cookie
+  const authToken = Cookies.get("auth_token");
   const headers = {
     //    Authorization: `bearer ${REACT_APP_GITHUB_AUTH_TOKEN}`,
-    Authorization: `bearer ${new Date()}`,
+    Authorization: `bearer ${authToken}`,
     "Content-Type": "application/json",
   };
   // Fetch data from GitHub's GraphQL API:
