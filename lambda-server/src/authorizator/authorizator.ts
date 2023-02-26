@@ -1,4 +1,4 @@
-const { postRequest } = require("../service/axios.ts");
+//const { postRequest } = require("../service/axios.ts");
 const { URL_AUTH } = process.env;
 
 /**
@@ -11,7 +11,10 @@ const { URL_AUTH } = process.env;
  * @returns
  */
 const signIn = async (_, values, event, context) => {
-  console.log("input", values);
+  const {
+    lambdaContext: { postRequest },
+  } = event;
+  //event.lambdaContext.myInjectedFunction();
   const res = await postRequest(URL_AUTH + "/login", values.input);
   return res.data.message;
 };
@@ -27,9 +30,12 @@ const signIn = async (_, values, event, context) => {
  * @returns
  */
 const signInGoogle = async (_, values, event, context) => {
+  const {
+    lambdaContext: { postRequest },
+  } = event;
   //console.log("Send payload", context);
-  console.log("values", values);
-  console.log("Authorization", event.lambdaEvent.headers.authorization);
+  // console.log("values", values);
+  // console.log("Authorization", event.lambdaEvent.headers.authorization);
   //const res = await postRequest(URL_AUTH + "/google", values);
   const res = await postRequest(
     URL_AUTH + "/google",
