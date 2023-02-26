@@ -2,22 +2,8 @@ import graphql from "babel-plugin-relay/macro";
 import { commitMutation } from "react-relay";
 
 const mutation = graphql`
-  mutation SignInUserMutation($input: UserSignIn) {
-    signInUser(input: $input) {
-      ... on authSuccessResponse {
-        token
-        user {
-          firstName
-          lastName
-          email
-          phone
-          _id
-        }
-      }
-      ... on errorResponse {
-        message
-      }
-    }
+  mutation SignInUserMutation($input: MediaLoginGoogle) {
+    signInUserMediaGoogle(input: $input)
   }
 `;
 
