@@ -1,6 +1,7 @@
 import React from "react";
 import { useRelayEnvironment } from "react-relay";
-import SignInUserMutation from "../mutations/SignInUserMutation.mutation";
+import GoogleSignInUserMutation from "../mutations/GoogleSignInUser.mutation";
+import SignInUserMutation from "../mutations/SignInUser.mutation";
 import { GoogleLogin } from "@react-oauth/google";
 import { useCookies } from "react-cookie";
 import "./MediaButtons.component.css";
@@ -9,7 +10,7 @@ const MediaButtons = () => {
   const environment = useRelayEnvironment();
   const [cookies, setCookie, removeCookie] = useCookies(["auth_token"]);
   const googleLogin = (values) => {
-    SignInUserMutation(environment, values)
+    GoogleSignInUserMutation(environment, values)
       .then((response) => {
         console.log("response: ", response);
       })
@@ -34,7 +35,9 @@ const MediaButtons = () => {
           className="form-login-button"
           onClick={() =>
             formLogin({
-              credential: "formulario",
+              nationalId: "12345678",
+              email: "mail@mail.com",
+              password: "pass",
             })
           }
         >
@@ -49,7 +52,7 @@ const MediaButtons = () => {
               expires: new Date(Date.now() + 60 * 60 * 1000),
             });
             googleLogin({
-              credential: credentialResponse.credential,
+              nationalId: "123",
             });
             console.log("credentialResponse", credentialResponse);
           }}

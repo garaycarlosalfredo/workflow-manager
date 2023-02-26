@@ -4,21 +4,22 @@ directive @specifiedBy(
   url: String!
 ) on SCALAR
 
-input MediaLoginGoogle {
-  credential: String
-}
-
 type Mutation {
-  signInUser(input: UserSignIn): String
-  signInUserMediaGoogle(input: MediaLoginGoogle): String
+  signInUser(input: SignInUserInput): String
+  signInUserGoogle(input: signInUserGoogleInput): String
 }
 
 type Query {
   hello: String
 }
 
-input UserSignIn {
+input signInUserGoogleInput {
+  nationalId: String
+}
+
+input SignInUserInput {
   email: String
   password: String
+  nationalId: String
 }
 

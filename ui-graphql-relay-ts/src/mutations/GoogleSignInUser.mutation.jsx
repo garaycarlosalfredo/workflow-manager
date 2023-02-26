@@ -2,12 +2,12 @@ import graphql from "babel-plugin-relay/macro";
 import { commitMutation } from "react-relay";
 
 const mutation = graphql`
-  mutation SignInUserMutation($input: MediaLoginGoogle) {
-    signInUserMediaGoogle(input: $input)
+  mutation GoogleSignInUserMutation($input: signInUserGoogleInput) {
+    signInUserGoogle(input: $input)
   }
 `;
 
-function SignInUserMutation(environment, input) {
+function GoogleSignInUserMutation(environment, input) {
   const variables = {
     input,
   };
@@ -30,4 +30,4 @@ function SignInUserMutation(environment, input) {
   });
 }
 
-export default SignInUserMutation;
+export default GoogleSignInUserMutation;

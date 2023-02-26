@@ -4,6 +4,6 @@ const { signIn, signInGoogle } = require("./authorizator.ts");
 module.exports = {
   Mutation: {
     signInUser: signIn,
-    signInUserMediaGoogle: signInGoogle,
+    signInUserGoogle: signInGoogle,
   },
 };

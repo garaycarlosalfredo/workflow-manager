@@ -1,13 +1,14 @@
-input UserSignIn {
+input SignInUserInput {
   email: String
   password: String
+  nationalId: String
 }
 
-input MediaLoginGoogle {
-  credential: String
+input signInUserGoogleInput {
+  nationalId: String
 }
 
 type Mutation {
-  signInUser(input: UserSignIn): String
-  signInUserMediaGoogle(input: MediaLoginGoogle): String
+  signInUser(input: SignInUserInput): String
+  signInUserGoogle(input: signInUserGoogleInput): String
 }

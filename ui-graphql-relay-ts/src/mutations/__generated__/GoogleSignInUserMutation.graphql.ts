@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<171c762dfc8ba99994075f165c921c3a>>
+ * @generated SignedSource<<70218faaa79dd6a5b421f15a82d415a8>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,20 +9,18 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Mutation } from 'relay-runtime';
-export type SignInUserInput = {
-  email?: string | null;
+export type signInUserGoogleInput = {
   nationalId?: string | null;
-  password?: string | null;
 };
-export type SignInUserMutation$variables = {
-  input?: SignInUserInput | null;
+export type GoogleSignInUserMutation$variables = {
+  input?: signInUserGoogleInput | null;
 };
-export type SignInUserMutation$data = {
-  readonly signInUser: string | null;
+export type GoogleSignInUserMutation$data = {
+  readonly signInUserGoogle: string | null;
 };
-export type SignInUserMutation = {
-  response: SignInUserMutation$data;
-  variables: SignInUserMutation$variables;
+export type GoogleSignInUserMutation = {
+  response: GoogleSignInUserMutation$data;
+  variables: GoogleSignInUserMutation$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -44,7 +42,7 @@ v1 = [
       }
     ],
     "kind": "ScalarField",
-    "name": "signInUser",
+    "name": "signInUserGoogle",
     "storageKey": null
   }
 ];
@@ -53,7 +51,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "SignInUserMutation",
+    "name": "GoogleSignInUserMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -62,20 +60,20 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "SignInUserMutation",
+    "name": "GoogleSignInUserMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "0ac254d1ab93b6b1fe50a253d0fe406e",
+    "cacheID": "b9c8b19e97d5847aa5649a32bca6f3f5",
     "id": null,
     "metadata": {},
-    "name": "SignInUserMutation",
+    "name": "GoogleSignInUserMutation",
     "operationKind": "mutation",
-    "text": "mutation SignInUserMutation(\n  $input: SignInUserInput\n) {\n  signInUser(input: $input)\n}\n"
+    "text": "mutation GoogleSignInUserMutation(\n  $input: signInUserGoogleInput\n) {\n  signInUserGoogle(input: $input)\n}\n"
   }
 };
 })();
 
-(node as any).hash = "18ab96b7efe4b967ae5fdace97bff063";
+(node as any).hash = "86446feb531d4dac6de15061ee4d11ca";
 
 export default node;
