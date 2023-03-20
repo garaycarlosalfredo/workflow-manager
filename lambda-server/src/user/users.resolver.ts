@@ -1,8 +1,7 @@
-const { APP_VERSION, APP_ENV } = process.env;
-const { userRequest } = require("../user/user.ts");
+import { userRequest } from "../user/user";
 
-module.exports = {
+export const userResolver = {
   Query: {
-    hello: async () => await userRequest({}),
+    hello: userRequest,
   },
 };
