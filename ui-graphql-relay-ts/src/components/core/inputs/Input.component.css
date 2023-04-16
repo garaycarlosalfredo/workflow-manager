@@ -1,0 +1,8 @@
+.form-input {
+  height: 1.6rem;
+  border-radius: 2rem;
+  margin: 1rem;
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}

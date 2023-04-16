@@ -3,4 +3,13 @@ const eventBody = (event) => {
   return JSON.parse(body);
 };
 
-module.exports = { eventBody };
+const eventGoogleApiCode = (event) => {
+  return event.queryStringParameters.code;
+};
+
+const getOauth2IdToken = codeToken =>{
+  return codeToken.tokens.id_token
+}
+
+
+module.exports = { eventBody ,eventGoogleApiCode,getOauth2IdToken};

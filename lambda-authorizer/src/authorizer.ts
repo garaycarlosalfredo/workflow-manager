@@ -2,6 +2,7 @@ import { eventBody } from "./utils/formatters";
 const { APP_ENV, APP_TEST } = process.env;
 
 export async function authorizerHandler(event, context) {
+  console.log("event", event);
   const dummyCheck = {
     email: "user@email",
     password: "abc123",
@@ -15,7 +16,7 @@ export async function authorizerHandler(event, context) {
       var: APP_TEST,
       env: APP_ENV,
       isAuth,
-      message: "hello world from authorizer",
+      message: "hello world from authorizer Normal " + inputLogin.email,
     }),
   };
 }
