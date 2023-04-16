@@ -11,7 +11,7 @@ functions:
     # Make sure your file path is correct!
     # (e.g., if your file is in the root folder use server.graphqlHandler )
     # The format is: <FILENAME>.<HANDLER>
-    handler: src/user.userHandler # highlight-line
+    handler: lambda.handleHttpUsers # highlight-line
     events:
       - httpApi:
           path: /
