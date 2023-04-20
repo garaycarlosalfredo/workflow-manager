@@ -21,9 +21,12 @@ functions:
           method: GET
 # Omit the following lines if you aren't using TS!
 plugins:
-  - serverless-plugin-typescript
+  - serverless-esbuild
   - serverless-offline
 custom:
+  esbuild:
+    bundle: true
+    minify: false
   serverless-offline:
     httpPort: 6000
     websocketPort: 6001
