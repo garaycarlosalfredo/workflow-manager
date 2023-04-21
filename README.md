@@ -12,6 +12,10 @@ task and appointmen organizer
 
 ![image](https://user-images.githubusercontent.com/68791092/221374709-bedc8dfc-9af5-4452-a58d-34aca0e0b32e.png)
 
+### Structure
+
+- [users-service](./lambda-users/README.md)
+
 ## My contact
 
 Garay Carlos Alfredo :rocket:
