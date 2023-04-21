@@ -6,7 +6,7 @@ task and appointmen organizer
 
 ## Skill used
 
-[![My Skills](https://skillicons.dev/icons?i=aws,nodejs,graphql,ts,vscode)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=aws,dynamodb,nodejs,react,graphql,ts,vscode)](https://skillicons.dev)
 
 ## Structure
 
