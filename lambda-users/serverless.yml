@@ -6,7 +6,7 @@ provider:
   profile: fb-lambda-dev
   environment:
     APP_VERSION: ${file(./package.json):version}
-    TABLE_USERS: ${self:service}-${opt:stage, self:provider.stage}-users
+    TABLE_USERS: ${file(./config/${self:provider.stage}.json):aws.dynamo.users}
     IS_LOCAL: ${param:isLocal, 'false'}
   httpApi:
     cors: true
@@ -19,7 +19,7 @@ provider:
           - UserTable
           - Arn
 functions:
-  graphql:
+  http-user:
     # Make sure your file path is correct!
     # (e.g., if your file is in the root folder use server.graphqlHandler )
     # The format is: <FILENAME>.<HANDLER>
@@ -43,7 +43,7 @@ custom:
   dynamodb:
     # If you only want to use DynamoDB Local in some stages, declare them here
     stages:
-      - dev
+      - local
     start:
       port: 8000
       inMemory: true
@@ -66,7 +66,8 @@ resources:
     UserTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: ${self:provider.environment.TABLE_USERS}
+        # TableName: ${self:provider.environment.TABLE_USERS}
+        TableName: ${self:provider.stage}-users
         AttributeDefinitions:
           - AttributeName: userId
             AttributeType: S

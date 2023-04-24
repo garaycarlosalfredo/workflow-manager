@@ -1,5 +1,4 @@
 import { getItem } from "../Service/user-db";
-const { REGION, TABLE_USERS, IS_LOCAL } = process.env;
 
 const userHandler = async (event, context) => {
   console.info("context", context);
@@ -8,11 +7,13 @@ const userHandler = async (event, context) => {
   a();
 
   try {
-    console.log("IS_LOCAL", IS_LOCAL);
     const user = await getItem({
-      TableName: "lambda-user-dev-users",
-      Key: { userId: { S: "1" } },
+      TableName: "local-users",
+      Key: {
+        userId: "1",
+      },
     });
+    console.log("[user]", user);
   } catch (error) {
     console.log("error", error);
   }

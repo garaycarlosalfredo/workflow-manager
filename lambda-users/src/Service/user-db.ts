@@ -1,7 +1,7 @@
 import AWS from "aws-sdk";
 const { REGION, TABLE_USERS, IS_LOCAL } = process.env;
 
-const dynamoDB = new AWS.DynamoDB(
+const dynamoDB = new AWS.DynamoDB.DocumentClient(
   IS_LOCAL === "localhost"
     ? {
         region: "localhost",
@@ -14,17 +14,14 @@ const dynamoDB = new AWS.DynamoDB(
 
 const getItem = (params) => {
   try {
-    return dynamoDB.getItem(params, (err, data) => {
-      if (err) console.log(err);
-      else console.log(data);
-    });
+    return dynamoDB.get(params).promise();
   } catch (error) {
     console.log("on getItem", error);
   }
 };
 
 const saveItem = (params) => {
-  return dynamoDB.putItem(params, (err, data) => {
+  return dynamoDB.put(params, (err, data) => {
     if (err) console.log(err);
     else console.log(data);
   });
