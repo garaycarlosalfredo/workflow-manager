@@ -6,9 +6,13 @@ import { userHandler } from "./users/user-handler";
  * @param {object} config A configuration object.
  * @returns {Function} An AWS λ handler functions.
  */
-function createUserHttpEventHandler(config) {
+const createUserHttpEventHandler = (config) => {
   //Here I can inject functions and configs
-  return userHandler;
-}
+  const fconsole = async () => {
+    return console.log("Hello");
+  };
+
+  return ({ event, context }) => userHandler(event, { ...context, fconsole });
+};
 
 export default createUserHttpEventHandler;

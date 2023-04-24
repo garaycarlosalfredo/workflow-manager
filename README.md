@@ -16,6 +16,12 @@ task and appointmen organizer
 
 - [users-service](./lambda-users/README.md)
 
+## notes
+
+To use serverless-dynamodb-local
+
+In the meantime, manually editing the download_url in node_modules/dynamodb-localhost/dynamodb/config.json to https://s3.us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.tar.gz and the import of http to https in node_modules/dynamodb-localhost/dynamodb/installer.js should do the trick!
+
 ## My contact
 
 Garay Carlos Alfredo :rocket:

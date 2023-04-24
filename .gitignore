@@ -145,4 +145,6 @@ yarn-error.log*
 */config/qa.json
 */config/prod.json
 */config/remote.json
+
+#UI react environment variable
 .env*
