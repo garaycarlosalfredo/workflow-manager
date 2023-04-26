@@ -12,7 +12,7 @@ const createUserHttpEventHandler = (config) => {
     return console.log("Hello");
   };
 
-  return ({ event, context }) => userHandler(event, { ...context, fconsole });
+  return (event, context) => userHandler(event, { ...context, fconsole });
 };
 
 export default createUserHttpEventHandler;

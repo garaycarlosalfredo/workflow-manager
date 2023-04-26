@@ -73,6 +73,8 @@ resources:
             AttributeType: S
           - AttributeName: "email"
             AttributeType: "S"
+          - AttributeName: "personalId"
+            AttributeType: "S"
         KeySchema:
           - AttributeName: userId
             KeyType: HASH
@@ -83,6 +85,17 @@ resources:
           - IndexName: "EmailIndex"
             KeySchema:
               - AttributeName: "email"
+                KeyType: "HASH"
+              - AttributeName: "userId"
+                KeyType: "RANGE"
+            Projection:
+              ProjectionType: "ALL"
+            ProvisionedThroughput:
+              ReadCapacityUnits: 5
+              WriteCapacityUnits: 5
+          - IndexName: "PersonalIdIndex"
+            KeySchema:
+              - AttributeName: "personalId"
                 KeyType: "HASH"
               - AttributeName: "userId"
                 KeyType: "RANGE"

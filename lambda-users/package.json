@@ -20,7 +20,10 @@
     "url": "https://github.com/garaycarlosalfredo/booking-organizer-lambda-user/issues"
   },
   "homepage": "https://github.com/garaycarlosalfredo/booking-organizer-lambda-user#readme",
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "ramda": "^0.29.0"
+  },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.114",
     "esbuild": "^0.17.17",
