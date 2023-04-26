@@ -5,7 +5,10 @@
   "main": "src/user.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "sls offline --param='environment=development'"
+    "start": "AWS_SDK_LOAD_CONFIG=1 AWS_PROFILE=fb-lambda-dev sls offline start --stage local --param='isLocal=localhost'",
+    "localdb.install": "sls dynamodb install",
+    "localdb.start": "sls dynamodb start",
+    "localdb.start:migrate": "sls dynamodb start --migrate"
   },
   "repository": {
     "type": "git",
@@ -17,9 +20,14 @@
     "url": "https://github.com/garaycarlosalfredo/booking-organizer-lambda-user/issues"
   },
   "homepage": "https://github.com/garaycarlosalfredo/booking-organizer-lambda-user#readme",
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "ramda": "^0.29.0"
+  },
   "devDependencies": {
+    "@types/aws-lambda": "^8.10.114",
     "esbuild": "^0.17.17",
+    "serverless-dynamodb-local": "^0.2.40",
     "serverless-esbuild": "^1.43.1",
     "serverless-offline": "^12.0.4"
   }

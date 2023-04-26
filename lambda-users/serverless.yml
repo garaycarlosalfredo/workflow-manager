@@ -1,13 +1,25 @@
-service: booking-organizer-lambda-user
+service: lambda-user
 provider:
   name: aws
   runtime: nodejs16.x
+  stage: ${opt:stage, 'dev'}
+  profile: fb-lambda-dev
   environment:
     APP_VERSION: ${file(./package.json):version}
+    TABLE_USERS: ${file(./config/${self:provider.stage}.json):aws.dynamo.users}
+    IS_LOCAL: ${param:isLocal, 'false'}
   httpApi:
     cors: true
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "dynamodb:GetItem"
+      Resource:
+        Fn::GetAtt:
+          - UserTable
+          - Arn
 functions:
-  graphql:
+  http-user:
     # Make sure your file path is correct!
     # (e.g., if your file is in the root folder use server.graphqlHandler )
     # The format is: <FILENAME>.<HANDLER>
@@ -22,12 +34,73 @@ functions:
 # Omit the following lines if you aren't using TS!
 plugins:
   - serverless-esbuild
+  - serverless-dynamodb-local
   - serverless-offline
 custom:
   esbuild:
     bundle: true
     minify: false
+  dynamodb:
+    # If you only want to use DynamoDB Local in some stages, declare them here
+    stages:
+      - local
+    start:
+      port: 8000
+      inMemory: true
+      heapInitial: 200m
+      heapMax: 1g
+      migrate: true
+      seed: true
+      convertEmptyValues: true
+    # Uncomment only if you already have a DynamoDB running locally
+    # noStart: true
+    migration:
+      dir: offline/migrations
   serverless-offline:
     httpPort: 6000
     websocketPort: 6001
     lambdaPort: 6002
+
+resources:
+  Resources:
+    UserTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        # TableName: ${self:provider.environment.TABLE_USERS}
+        TableName: ${self:provider.stage}-users
+        AttributeDefinitions:
+          - AttributeName: userId
+            AttributeType: S
+          - AttributeName: "email"
+            AttributeType: "S"
+          - AttributeName: "personalId"
+            AttributeType: "S"
+        KeySchema:
+          - AttributeName: userId
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        GlobalSecondaryIndexes:
+          - IndexName: "EmailIndex"
+            KeySchema:
+              - AttributeName: "email"
+                KeyType: "HASH"
+              - AttributeName: "userId"
+                KeyType: "RANGE"
+            Projection:
+              ProjectionType: "ALL"
+            ProvisionedThroughput:
+              ReadCapacityUnits: 5
+              WriteCapacityUnits: 5
+          - IndexName: "PersonalIdIndex"
+            KeySchema:
+              - AttributeName: "personalId"
+                KeyType: "HASH"
+              - AttributeName: "userId"
+                KeyType: "RANGE"
+            Projection:
+              ProjectionType: "ALL"
+            ProvisionedThroughput:
+              ReadCapacityUnits: 5
+              WriteCapacityUnits: 5
