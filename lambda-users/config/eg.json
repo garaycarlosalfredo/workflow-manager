@@ -3,7 +3,7 @@
         "region": "us-west-1",
         "logRetentionInDays": 7,
         "dynamo": {
-            "table": "table"
+            "users": "table-users"
         }
     },
     "lambdaAuthorizer": {

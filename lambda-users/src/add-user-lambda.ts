@@ -1,3 +1,4 @@
+import { compose } from "ramda";
 import { addUserHandler } from "./users/add-user-handler";
 import { addUser } from "./Service/user-db";
 
@@ -8,7 +9,12 @@ import { addUser } from "./Service/user-db";
  * @returns {Function} An AWS λ handler functions.
  */
 const createAddUserHttpEventHandler = (config) => {
-  return (event, context) => addUserHandler(event, { ...context, addUser });
+  // inject addUser AWS SDK put
+  const functionInjectAddUser = (handler) => (event, context) => {
+    return handler(event, { ...context, addUser });
+  };
+
+  return compose(functionInjectAddUser)(addUserHandler);
 };
 
 export default createAddUserHttpEventHandler;
