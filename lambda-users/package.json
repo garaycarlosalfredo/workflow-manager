@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.114",
+    "@types/node": "^18.16.1",
     "esbuild": "^0.17.17",
     "serverless-dynamodb-local": "^0.2.40",
     "serverless-esbuild": "^1.43.1",
