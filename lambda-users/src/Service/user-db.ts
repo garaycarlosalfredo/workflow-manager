@@ -48,11 +48,14 @@ const getUserById = (id) => {
   }
 };
 
-const saveItem = (params) => {
-  return dynamoDB.put(params, (err, data) => {
-    if (err) console.log(err);
-    else console.log(data);
-  });
+const addUser = async (user) => {
+  const params = {
+    TableName: TABLE_USERS,
+    Item: user,
+  };
+
+  await dynamoDB.put(params).promise();
+  return user;
 };
 
-export { getUserById, saveItem, findUserByEmail };
+export { getUserById, addUser, findUserByEmail };

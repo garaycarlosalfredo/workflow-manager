@@ -31,6 +31,16 @@ functions:
       - httpApi:
           path: /
           method: GET
+  http-add-user:
+    # Make sure your file path is correct!
+    # (e.g., if your file is in the root folder use server.graphqlHandler )
+    # The format is: <FILENAME>.<HANDLER>
+    handler: lambda.handleHttpAddUsers # highlight-line
+    events:
+      - httpApi:
+          path: /user
+          method: POST
+
 # Omit the following lines if you aren't using TS!
 plugins:
   - serverless-esbuild
@@ -71,10 +81,10 @@ resources:
         AttributeDefinitions:
           - AttributeName: userId
             AttributeType: S
-          - AttributeName: "email"
-            AttributeType: "S"
-          - AttributeName: "personalId"
-            AttributeType: "S"
+          - AttributeName: email
+            AttributeType: S
+          - AttributeName: personalId
+            AttributeType: S
         KeySchema:
           - AttributeName: userId
             KeyType: HASH
@@ -82,25 +92,25 @@ resources:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
         GlobalSecondaryIndexes:
-          - IndexName: "EmailIndex"
+          - IndexName: EmailIndex
             KeySchema:
-              - AttributeName: "email"
-                KeyType: "HASH"
-              - AttributeName: "userId"
-                KeyType: "RANGE"
+              - AttributeName: email
+                KeyType: HASH
+              - AttributeName: userId
+                KeyType: RANGE
             Projection:
-              ProjectionType: "ALL"
+              ProjectionType: ALL
             ProvisionedThroughput:
               ReadCapacityUnits: 5
               WriteCapacityUnits: 5
-          - IndexName: "PersonalIdIndex"
+          - IndexName: PersonalIdIndex
             KeySchema:
-              - AttributeName: "personalId"
-                KeyType: "HASH"
-              - AttributeName: "userId"
-                KeyType: "RANGE"
+              - AttributeName: personalId
+                KeyType: HASH
+              - AttributeName: userId
+                KeyType: RANGE
             Projection:
-              ProjectionType: "ALL"
+              ProjectionType: ALL
             ProvisionedThroughput:
               ReadCapacityUnits: 5
               WriteCapacityUnits: 5

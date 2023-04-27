@@ -5,9 +5,11 @@
  * @module lambda-user-service
  */
 
-import config from "./src/config/config";
 import createUserHttpEventHandler from "./src/user-lambda";
+import createAddUserHttpEventHandler from "./src/add-user-lambda";
+import config from "./src/config/config";
 
 const handleHttpUsers = createUserHttpEventHandler(config);
+const handleHttpAddUsers = createAddUserHttpEventHandler(config);
 
-export { handleHttpUsers };
+export { handleHttpUsers, handleHttpAddUsers };
