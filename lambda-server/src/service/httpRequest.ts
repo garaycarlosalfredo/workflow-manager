@@ -1,20 +1,23 @@
 import fetch from "node-fetch";
-import { buildUrl } from "../utils/create-url";
+import { buildUrl, buildHeader, buildBody } from "../utils/create-url";
 
 export const fetchRequest = async ({
   baseUrl,
   method,
-  body,
+  payload,
   pathParameters,
   queryStringParameters,
+  extraHeaders,
 }) => {
   try {
     const url = buildUrl(baseUrl);
+    const headers = buildHeader(extraHeaders);
+    const body = buildBody(payload);
 
     const options = {
       method,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
+      headers,
+      body,
     };
 
     const response = await fetch(url, options);
