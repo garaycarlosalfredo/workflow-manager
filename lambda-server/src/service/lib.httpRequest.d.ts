@@ -1,4 +1,3 @@
 declare module "httpRequest" {
-  import axios from "axios";
-  export const postRequest: (url: string, data: any) => Promise<any>;
+  export const fetchRequest: (url: string, data: any) => Promise<any>;
 }

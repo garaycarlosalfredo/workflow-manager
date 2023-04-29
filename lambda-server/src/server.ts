@@ -1,7 +1,7 @@
 import { ApolloServer } from "@apollo/server";
 import { startServerAndCreateLambdaHandler } from "@as-integrations/aws-lambda"; //highlight-line
 import { buildSchema } from "./schema"; // Build schema for Apollo server
-import { postRequest, fetchRequest } from "./service/httpRequest";
+import { fetchRequest } from "./service/httpRequest";
 
 const server = new ApolloServer<ServerContext>({ schema: buildSchema() });
 
@@ -12,7 +12,7 @@ export const graphqlHandler = startServerAndCreateLambdaHandler(server, {
       lambdaEvent: event,
       lambdaContext: {
         ...context,
-        postRequest, // Add function as property or lambdaContext
+        // Add function as property or lambdaContext
         fetchRequest,
       },
     };
