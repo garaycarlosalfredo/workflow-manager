@@ -7,7 +7,7 @@ export const signIn = async (_, values, event, context) => {
 
   const res = await fetchRequest({
     baseUrl: URL_AUTH + "/login",
-    body: values.input,
+    payload: values.input,
     method: "POST",
   });
   return res.message;
@@ -19,7 +19,7 @@ export const signInGoogle = async (_, values, event, context) => {
   } = event;
   const res = await fetchRequest({
     baseUrl: URL_AUTH + "/google",
-    body: event.lambdaEvent.headers.authorization,
+    payload: event.lambdaEvent.headers.authorization,
     method: "POST",
   });
   return res.data.message;

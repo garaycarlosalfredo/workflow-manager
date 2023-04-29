@@ -1,4 +1,4 @@
-import { concat, converge } from "ramda";
+import { concat, converge, mergeRight } from "ramda";
 import qs from "qs";
 
 function interpolateUrl({ baseUrl, pathParameters }) {
@@ -30,4 +30,9 @@ const buildUrl = (baseUrl, pathParameters?, queryStringParameters?) => {
   });
 };
 
-export { buildUrl };
+const buildHeader = (extraHeaders = {}) =>
+  mergeRight({ "Content-Type": "application/json" }, extraHeaders);
+
+const buildBody = JSON.stringify;
+
+export { buildUrl, buildHeader, buildBody };
