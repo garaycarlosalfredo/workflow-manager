@@ -1,7 +1,23 @@
 import axios from "axios";
+import fetch from "node-fetch";
 
-export const postRequest = async (url: string, data: any): Promise<any> => {
-  const res = await axios.post(url, data);
-  console.log("post request success");
-  return res;
+export const fetchRequest = async ({
+  url,
+  method,
+  body,
+  pathParameters,
+  queryStringParameters,
+}) => {
+  try {
+    const options = {
+      method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    };
+    const response = await fetch(url, options);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 };

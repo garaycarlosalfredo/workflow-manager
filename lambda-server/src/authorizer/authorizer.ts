@@ -2,19 +2,25 @@ const { URL_AUTH } = process.env;
 
 export const signIn = async (_, values, event, context) => {
   const {
-    lambdaContext: { postRequest },
+    lambdaContext: { fetchRequest },
   } = event;
-  const res = await postRequest(URL_AUTH + "/login", values.input);
-  return res.data.message;
+
+  const res = await fetchRequest({
+    url: URL_AUTH + "/login",
+    body: values.input,
+    method: "POST",
+  });
+  return res.message;
 };
 
 export const signInGoogle = async (_, values, event, context) => {
   const {
-    lambdaContext: { postRequest },
+    lambdaContext: { fetchRequest },
   } = event;
-  const res = await postRequest(
-    URL_AUTH + "/google",
-    event.lambdaEvent.headers.authorization
-  );
+  const res = await fetchRequest({
+    url: URL_AUTH + "/google",
+    body: event.lambdaEvent.headers.authorization,
+    method: "POST",
+  });
   return res.data.message;
 };
