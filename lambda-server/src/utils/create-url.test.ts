@@ -1,4 +1,4 @@
-import { buildHeader, buildUrl } from "./create-url";
+import { buildHeader, buildUrl, buildBody } from "./create-url";
 
 describe("buildHeader", () => {
   test("should generate a default headers in case of undefined argument", () => {
@@ -50,5 +50,17 @@ describe("buildUrl", () => {
       queryStringParameters: { x: "valueX", y: "valueY" },
     });
     expect(headers).toEqual("../valueA/some/ValueB/other?x=valueX&y=valueY");
+  });
+});
+
+describe("buildBody", () => {
+  test("should be undefined in case of undefined argument", () => {
+    const body = buildBody(undefined);
+    expect(body).toEqual(undefined);
+  });
+  test("should stringify the the payload", () => {
+    const payload = { a: "valueA" };
+    const body = buildBody(payload);
+    expect(body).toEqual(JSON.stringify(payload));
   });
 });
