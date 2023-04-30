@@ -1,12 +1,17 @@
 import { concat, converge, mergeRight, isNotNil } from "ramda";
 import qs from "qs";
+import {
+  BuildUrlOptions,
+  AddQueryStringOptions,
+  InterpolateUrlParams,
+} from "./lib.create-url";
 
-const URL_INTERPOLATION_PATTERN = /{([^}]+)}/g;
+const URL_INTERPOLATION_PATTERN: RegExp = /{([^}]+)}/g;
 
-const interpolateUrl = ({ baseUrl, pathParameters }) => {
+const interpolateUrl = ({ baseUrl, pathParameters }: InterpolateUrlParams) => {
   if (isNotNil(pathParameters)) {
-    return baseUrl.replace(URL_INTERPOLATION_PATTERN, (_, prop) =>
-      encodeURIComponent(pathParameters[prop] ?? "")
+    return baseUrl?.replace(URL_INTERPOLATION_PATTERN, (_, prop) =>
+      encodeURIComponent(pathParameters?.[prop] ?? "")
     );
   } else {
     return baseUrl;
@@ -18,22 +23,16 @@ const interpolateUrl = ({ baseUrl, pathParameters }) => {
  * @param param0.queryStringParameters // object with query parameters
  * @returns string
  */
-const addQueryString = ({ queryStringParameters }) =>
+const addQueryString = ({ queryStringParameters }: AddQueryStringOptions) =>
   qs.stringify(queryStringParameters, {
     addQueryPrefix: true,
   });
-
-interface UrlOptions {
-  baseUrl?: string;
-  pathParameters?: object;
-  queryStringParameters?: object;
-}
 
 const buildUrl = ({
   baseUrl,
   pathParameters,
   queryStringParameters,
-}: UrlOptions) => {
+}: BuildUrlOptions) => {
   return converge(concat, [interpolateUrl, addQueryString])({
     baseUrl,
     pathParameters,
@@ -41,9 +40,9 @@ const buildUrl = ({
   });
 };
 
-const buildHeader = (extraHeaders = {}) =>
-  mergeRight({ "Content-Type": "application/json" }, extraHeaders);
-
+const buildHeader = (extraHeaders: object = {}) => {
+  return mergeRight({ "Content-Type": "application/json" }, extraHeaders);
+};
 const buildBody = JSON.stringify;
 
 export { buildUrl, buildHeader, buildBody };
