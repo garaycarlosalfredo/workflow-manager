@@ -1,16 +1,17 @@
-import { concat, converge, mergeRight } from "ramda";
+import { concat, converge, mergeRight, isNotNil } from "ramda";
 import qs from "qs";
 
-function interpolateUrl({ baseUrl, pathParameters }) {
-  const pattern = /{([^}]+)}/g;
-  let url = baseUrl;
-  if (pathParameters !== null && pathParameters !== undefined) {
-    url = baseUrl.replace(pattern, (_, prop) =>
+const URL_INTERPOLATION_PATTERN = /{([^}]+)}/g;
+
+const interpolateUrl = ({ baseUrl, pathParameters }) => {
+  if (isNotNil(pathParameters)) {
+    return baseUrl.replace(URL_INTERPOLATION_PATTERN, (_, prop) =>
       encodeURIComponent(pathParameters[prop] ?? "")
     );
+  } else {
+    return baseUrl;
   }
-  return url;
-}
+};
 /**
  * Function create an string of query string parameters
  *
@@ -22,7 +23,17 @@ const addQueryString = ({ queryStringParameters }) =>
     addQueryPrefix: true,
   });
 
-const buildUrl = (baseUrl, pathParameters?, queryStringParameters?) => {
+interface UrlOptions {
+  baseUrl?: string;
+  pathParameters?: object;
+  queryStringParameters?: object;
+}
+
+const buildUrl = ({
+  baseUrl,
+  pathParameters,
+  queryStringParameters,
+}: UrlOptions) => {
   return converge(concat, [interpolateUrl, addQueryString])({
     baseUrl,
     pathParameters,

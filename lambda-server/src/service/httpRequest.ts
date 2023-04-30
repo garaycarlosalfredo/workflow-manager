@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 import { buildUrl, buildHeader, buildBody } from "../utils/create-url";
 
 export const fetchRequest = async ({
-  baseUrl,
+  baseUrl = "",
   method,
   payload,
   pathParameters,
@@ -10,7 +10,7 @@ export const fetchRequest = async ({
   extraHeaders,
 }) => {
   try {
-    const url = buildUrl(baseUrl);
+    const url = buildUrl({ baseUrl, pathParameters, queryStringParameters });
     const headers = buildHeader(extraHeaders);
     const body = buildBody(payload);
 
