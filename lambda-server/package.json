@@ -20,7 +20,7 @@
     "@graphql-tools/merge": "^8.3.14",
     "graphql": "^16.6.0",
     "graphql-tools": "^8.3.14",
-    "node-fetch": "^3.3.1",
+    "node-fetch": "^2.6.1",
     "qs": "^6.11.1",
     "ramda": "^0.29.0"
   },

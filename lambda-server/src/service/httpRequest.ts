@@ -10,25 +10,25 @@ export const fetchRequest = async ({
   queryStringParameters,
   extraHeaders,
 }: FetchRequestProps): Promise<any> => {
-  try {
-    const url = buildUrl({ baseUrl, pathParameters, queryStringParameters });
-    const headers = buildHeader(extraHeaders);
-    const body = buildBody(payload);
+  const url = buildUrl({ baseUrl, pathParameters, queryStringParameters });
+  const headers = buildHeader(extraHeaders);
+  const body = buildBody(payload);
 
-    const options = {
-      method,
-      headers,
-      body,
-    };
+  const options = {
+    method,
+    headers,
+    body,
+  };
 
-    console.log("options", options);
-    const response = await fetch(url, options);
-    console.log("jsonResponse1", response);
-    const jsonResponse = await response.json();
-    console.log("jsonResponse", jsonResponse);
-    return jsonResponse;
-  } catch (error) {
-    console.error(error);
-    return { error: error };
+  const response = await fetch(url, options);
+
+  if (!response.ok) {
+    throw new Error(`Request failed with status code ${response.status}`);
   }
+
+  // const jsonResponse = await response.json();
+  const textResponse = await response.text();
+
+  const jsonResponse = JSON.parse(textResponse);
+  return jsonResponse;
 };
