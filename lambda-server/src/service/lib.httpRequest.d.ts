@@ -1,3 +1,8 @@
-declare module "httpRequest" {
-  export const fetchRequest: (url: string, data: any) => Promise<any>;
-}
+export type FetchRequestProps = {
+  baseUrl?: string;
+  method: string;
+  payload?: object;
+  pathParameters?: object;
+  queryStringParameters?: object;
+  extraHeaders?: object;
+};

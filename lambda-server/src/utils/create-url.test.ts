@@ -11,7 +11,6 @@ describe("buildHeader", () => {
   });
   test("should generate headers with correct content type", () => {
     const headers = buildHeader({ header2: "value2", "header-3": "value3" });
-    console.log("headers", headers);
     expect(headers).toEqual({
       "Content-Type": "application/json",
       header2: "value2",
@@ -34,7 +33,6 @@ describe("buildUrl", () => {
     });
     expect(headers).toEqual("../valueA/some/ValueB/other");
   });
-
   test("without query parameters should generate a url add the query string data", () => {
     const headers = buildUrl({
       baseUrl: "../some/other",
