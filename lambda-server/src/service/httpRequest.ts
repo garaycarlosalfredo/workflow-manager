@@ -4,7 +4,7 @@ import { FetchRequestProps } from "./lib.httpRequest";
 
 export const fetchRequest = async ({
   baseUrl = "",
-  method,
+  method = "GET",
   payload,
   pathParameters,
   queryStringParameters,

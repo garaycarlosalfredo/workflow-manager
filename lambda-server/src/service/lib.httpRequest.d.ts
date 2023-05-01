@@ -1,6 +1,6 @@
 export type FetchRequestProps = {
-  baseUrl?: string;
-  method: string;
+  baseUrl: string;
+  method?: string;
   payload?: object;
   pathParameters?: object;
   queryStringParameters?: object;
