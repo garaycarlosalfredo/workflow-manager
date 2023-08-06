@@ -15,12 +15,14 @@
     "resolveJsonModule": true,
     "baseUrl": "./",
     "paths": {
-      "@atoms": ["src/components/atoms/index.ts"],
-      "@molecules": ["src/components/molecules/index.ts"],
-      "@organisms": ["src/components/organisms/index.ts"],
-      "@pages": ["src/components/pages/index.ts"],
-      "@template": ["src/components/template/index.ts"],
+      "@atoms": ["src/components/atoms/index.tsx"],
+      "@molecules": ["src/components/molecules/index.tsx"],
+      "@organisms": ["src/components/organisms/index.tsx"],
+      "@template": ["src/components/template/index.tsx"],
+      "@pages": ["src/components/pages/index.tsx"],
       "@components/*": ["src/components/*"],
+      "@contexts": ["src/utils/contexts/index.tsx"],
+      "@hooks": ["src/utils/hooks/index.tsx"],
       "@utils/*": ["src/utils/*"]
     }
   }

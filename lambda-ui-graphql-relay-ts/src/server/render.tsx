@@ -6,7 +6,7 @@ import * as React from "react";
 import { renderToString } from "react-dom/server";
 
 import App from "../App";
-import ConfigContext from "../components/ConfigContext";
+import ConfigContext from "../utils/contexts/ConfigContext";
 import config from "./config";
 import html from "./html";
 import { Stats } from "./types";

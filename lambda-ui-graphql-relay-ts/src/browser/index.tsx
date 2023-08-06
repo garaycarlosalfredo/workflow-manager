@@ -10,7 +10,7 @@ import "./index.css";
 import * as React from "react";
 import { hydrate } from "react-dom";
 
-import ConfigContext from "../components/ConfigContext";
+import ConfigContext from "../utils/contexts/ConfigContext";
 import { Config } from "../server/config";
 import App from "../App";
 
