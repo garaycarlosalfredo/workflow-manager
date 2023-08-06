@@ -13,6 +13,15 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "resolveJsonModule": true,
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "paths": {
+      "@atoms": ["src/components/atoms/index.ts"],
+      "@molecules": ["src/components/molecules/index.ts"],
+      "@organisms": ["src/components/organisms/index.ts"],
+      "@pages": ["src/components/pages/index.ts"],
+      "@template": ["src/components/template/index.ts"],
+      "@components/*": ["src/components/*"],
+      "@utils/*": ["src/utils/*"]
+    }
   }
 }
