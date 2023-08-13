@@ -1,9 +1,10 @@
 import React from "react";
-import { useConfig } from "@hooks";
+import { useConfig } from "../../../contexts/use-context/useConfig";
 import { Button, Button2, ReactLogo } from "@atoms";
 
 const Home = () => {
     const config = useConfig();
+    console.log('config', config)
     return (
         <div className="App">
             <header className="App-header">

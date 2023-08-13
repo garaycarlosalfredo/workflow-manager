@@ -22,6 +22,9 @@
       "@pages": ["src/components/pages/index.tsx"],
       "@components/*": ["src/components/*"],
       "@contexts": ["src/utils/contexts/index.tsx"],
+      "@contexts2": ["src/contexts/index.tsx"],
+      // "@reducers": ["src/contexts/reducers/index.tsx"],
+      "@states": ["src/contexts/states/index.tsx"],
       "@hooks": ["src/utils/hooks/index.tsx"],
       "@utils/*": ["src/utils/*"]
     }

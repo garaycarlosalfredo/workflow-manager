@@ -1,5 +1,7 @@
 
 // Context
-import ConfigContext from "../contexts/ConfigContext";
+import ConfigContext from "./ConfigContext";
+import ThemeContext from "./theme-context/Theme.context";
+import ThemeState from "./theme-context/Theme.context";
 // Others
-export { ConfigContext };
+export { ConfigContext, ThemeContext, ThemeState };

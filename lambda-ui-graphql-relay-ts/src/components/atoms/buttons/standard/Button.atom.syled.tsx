@@ -22,9 +22,9 @@ const ButtonStyles: React.FC<ButtonStylesProps> = ({ isPrimary = false, isDisabl
  */
 
 const ButtonStyles: React.FC = () => (
-    <style>{`
-    .button-normal {
-      background-color: rgb(220, 248, 236);
+  <style>{`
+    .light {
+      // background-color: rgb(220, 248, 236);
       border-radius: 1em;
       border-color: rgb(69, 95, 66);
       border-style: solid;
@@ -36,11 +36,10 @@ const ButtonStyles: React.FC = () => (
       box-sizing: border-box;
     }
 
-    .button-normal:hover {
-      background-color: rgb(171, 247, 218);
+    .light:hover {
+      // background-color: rgb(171, 247, 218);
       border-color: rgb(73, 169, 63);
     }
-  `}</style>
-);
+  `}</style>)
 
 export default ButtonStyles;

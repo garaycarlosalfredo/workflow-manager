@@ -7,9 +7,9 @@ import { ConfigContext } from "@contexts";
  * Hook to read application configuration settings
  */
 export default function useConfig(): Config {
-  const config = useContext(ConfigContext);
-  if (!config) {
-    throw new Error("Configuration context not initialized!");
-  }
-  return config;
+    const config = useContext(ConfigContext);
+    if (!config) {
+        throw new Error("Configuration context not initialized!");
+    }
+    return config;
 }
