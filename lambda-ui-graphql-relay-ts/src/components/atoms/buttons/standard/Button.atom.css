@@ -1,7 +1,5 @@
-.button-normal {
-  background-color: rgb(220, 248, 236);
+.button {
   border-radius: 1em;
-  border-color: rgb(69, 95, 66);
   border-style: solid;
   border-width: 0.12rem;
   height: 2rem;
@@ -10,7 +8,5 @@
   font-size: medium;
   box-sizing: border-box;
 }
-.button-normal:hover {
-  background-color: rgb(171, 247, 218);
-  border-color: rgb(73, 169, 63);
+.button:hover {
 }

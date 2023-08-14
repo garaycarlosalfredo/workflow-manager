@@ -10,16 +10,10 @@ function ButtonStandard(props) {
     const { user } = userContext
     const theme = useThemeContext()
     console.log('theme', theme)
-    // const [theme, setTheme] = useState()
-
-    // console.log(themeContextData);
-    // useEffect(() => {
-    //     setTheme(theme)
-    // }, [theme])
 
     return (
         <div>
-            <button className={`${theme}`}>{props.children}</button>
+            <button className={`button ${theme}`}>{props.children}</button>
             <MyButton />
         </div>
     )

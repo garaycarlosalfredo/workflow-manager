@@ -1,3 +1,4 @@
 import UserState from "./userState";
+import ConfigState from "./configState";
 
-export { UserState }
+export { UserState, ConfigState }

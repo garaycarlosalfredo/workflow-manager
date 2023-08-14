@@ -1,7 +1,6 @@
 // Load polyfills (once, on the top of our web app)
 import "core-js/stable";
 import "regenerator-runtime/runtime";
-
 import "./index.css";
 
 /**
@@ -10,25 +9,18 @@ import "./index.css";
 import * as React from "react";
 import { hydrate } from "react-dom";
 
-import { ConfigContext } from "@contexts";
-import Providers from "src/globals/providers/providers";
-import { Config } from "../server/config";
+import Providers from "@providers";
 import App from "../App";
-import themeData from "src/config/Theme.data";
-
-const config = (window as any).__CONFIG__ as Config;
-delete (window as any).__CONFIG__;
 
 /** Components added here will _only_ be loaded in the web browser, never for server-side rendering */
 const render = () => {
   hydrate(
     <>
       {/* The configuration is the outmost component. This allows us to read the configuration even in the theme */}
-      <ConfigContext.Provider value={config}>
-        <Providers>
-          <App />
-        </Providers>
-      </ConfigContext.Provider>
+
+      <Providers>
+        <App />
+      </Providers>
     </>,
     document.getElementById("root"),
   );

@@ -25,6 +25,7 @@
       "@reducers": ["src/globals/reducers/index.tsx"],
       "@states": ["src/globals/states/index.tsx"],
       "@useContexts": ["src/globals/use-contexts/index.tsx"],
+      "@providers": ["src/globals/providers/Providers.tsx"],
       "@hooks": ["src/utils/hooks/index.tsx"],
       "@utils/*": ["src/utils/*"]
     }
