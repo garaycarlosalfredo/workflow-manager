@@ -1,13 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 // import "./Button.atom.css";
 import MyButton from './Button.atom.syled'
-import { ThemeContext } from "@contexts"; // Ajusta la ruta de importación según sea necesario
-import { UserContext } from '@contexts2';
+import { UserContext } from '@contexts';
 import { useThemeContext } from '@useContexts';
 
 function ButtonStandard(props) {
 
-    const themeContextData = useContext(ThemeContext);
     const userContext = React.useContext(UserContext)
     const { user } = userContext
     const theme = useThemeContext()

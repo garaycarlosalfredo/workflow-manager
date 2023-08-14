@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { UserContext } from "@contexts2"
+import { UserContext } from "@contexts"
 
 export function useThemeContext() {
     const user = useContext(UserContext)

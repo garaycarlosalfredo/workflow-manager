@@ -10,8 +10,7 @@ import "./index.css";
 import * as React from "react";
 import { hydrate } from "react-dom";
 
-import ConfigContext from "../utils/contexts/ConfigContext";
-import { ThemeState } from "@contexts";
+import { ConfigContext } from "@contexts";
 import Providers from "src/globals/providers/providers";
 import { Config } from "../server/config";
 import App from "../App";
@@ -27,9 +26,7 @@ const render = () => {
       {/* The configuration is the outmost component. This allows us to read the configuration even in the theme */}
       <ConfigContext.Provider value={config}>
         <Providers>
-          <ThemeState.Provider value={themeData}>
-            <App />
-          </ThemeState.Provider>
+          <App />
         </Providers>
       </ConfigContext.Provider>
     </>,

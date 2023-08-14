@@ -1,3 +1,4 @@
-import UserContext from "./userContext";
+import UserContext from "./UserContext";
+import ConfigContext from "./ConfigContext";
 
-export { UserContext }
+export { UserContext, ConfigContext }
