@@ -1,11 +1,10 @@
 import React, { useReducer } from 'react'
-import { UserContext } from '@contexts2'
-import { UserReducer } from '../reducers'
+import { UserContext } from 'src/globals/contexts'
+import { UserReducer } from 'src/globals/reducers'
 
 import {
     SET_USER, CLEAN_USER
-} from '../types/index'
-
+} from '../../contexts/types/index'
 
 const UserState = props => {
 

@@ -1,7 +1,7 @@
 import {
     SET_USER,
     CLEAN_USER, SET_USER_THEME
-} from '../types'
+} from '../../contexts/types'
 
 export default (state: any, action: any) => {
     switch (action.type) {

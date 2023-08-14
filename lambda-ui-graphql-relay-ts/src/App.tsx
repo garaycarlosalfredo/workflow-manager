@@ -3,7 +3,7 @@ import "./App.css";
 import * as React from "react";
 
 import { Home } from "@pages";
-import UserContext from "./contexts/user-context/userContext";
+import UserContext from "./globals/contexts/userContext";
 
 /**
  * Our Web Application

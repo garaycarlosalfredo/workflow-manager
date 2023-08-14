@@ -1,5 +1,5 @@
 import React from 'react'
-import { UserState } from "@states";
+import { UserState } from "src/globals/states";
 
 function Providers({ children }: any) {
     return (
