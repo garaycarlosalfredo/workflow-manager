@@ -1,5 +1,5 @@
 import React from "react";
-import { useConfig } from "../../../contexts/use-context/useConfig";
+import { useConfig } from "@useContexts";
 import { Button, Button2, ReactLogo } from "@atoms";
 
 const Home = () => {

@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react'
-import { UserContext } from 'src/globals/contexts'
-import { UserReducer } from 'src/globals/reducers'
+import { UserContext } from '@contexts2'
+import { UserReducer } from '@reducers'
 
 import {
     SET_USER, CLEAN_USER

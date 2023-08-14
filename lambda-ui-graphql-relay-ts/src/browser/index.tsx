@@ -12,7 +12,7 @@ import { hydrate } from "react-dom";
 
 import ConfigContext from "../utils/contexts/ConfigContext";
 import { ThemeState } from "@contexts";
-import Providers from "src/globals/providers/Providers";
+import Providers from "src/globals/providers/providers";
 import { Config } from "../server/config";
 import App from "../App";
 import themeData from "src/config/Theme.data";
