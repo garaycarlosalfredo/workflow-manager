@@ -1,22 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react'
-// import "./Button.atom.css";
+import React, { ReactNode, useCallback } from 'react'
+import "./Button.atom.css";
 import MyButton from './Button.atom.syled'
-import { UserContext } from '@contexts';
 import { useThemeContext } from '@useContexts';
+import { ButtonProps } from './Button.atom.type';
 
-function ButtonStandard(props) {
-
-    const userContext = React.useContext(UserContext)
-    const { user } = userContext
+function
+    Button({ children, onClick }) {
     const theme = useThemeContext()
-    console.log('theme', theme)
-
     return (
-        <div>
-            <button className={`button ${theme}`}>{props.children}</button>
-            <MyButton />
-        </div>
+        <button className={`button btn-${theme}`} onClick={onClick}>{children}</button>
     )
 }
 
-export default ButtonStandard 
+export default Button 

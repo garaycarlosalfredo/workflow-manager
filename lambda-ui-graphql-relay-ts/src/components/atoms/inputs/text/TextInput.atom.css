@@ -1,0 +1,17 @@
+.textInput {
+  border-radius: 0.5em;
+  border-style: solid;
+  border-width: 0.12rem;
+  height: 2rem;
+  width: 100%;
+  font-size: medium;
+  box-sizing: border-box;
+}
+
+.textInputLabel {
+  display: flex;
+  height: 1rem;
+  width: 100%;
+  font-size: medium;
+  box-sizing: border-box;
+}
