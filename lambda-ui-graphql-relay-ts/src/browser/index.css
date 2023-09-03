@@ -21,3 +21,21 @@ body {
   background-color: rgb(66, 73, 70);
   border-color: rgb(252, 253, 252);
 }
+
+/*Buttons*/
+.btn-light {
+  background-color: rgb(220, 248, 236);
+  border-color: rgb(69, 95, 66);
+}
+.btn-light:hover {
+  background-color: rgb(171, 247, 218);
+  border-color: rgb(73, 169, 63);
+}
+.btn-dark {
+  background-color: rgb(52, 55, 54);
+  border-color: rgb(69, 95, 66);
+}
+.btn-dark:hover {
+  background-color: rgb(66, 73, 70);
+  border-color: rgb(252, 253, 252);
+}
