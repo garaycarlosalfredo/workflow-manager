@@ -14,6 +14,19 @@ provider:
   httpApi:
     cors: true
 functions:
+  sign-up:
+    # Make sure your file path is correct!
+    # (e.g., if your file is in the root folder use server.graphqlHandler )
+    # The format is: <FILENAME>.<HANDLER>
+    handler: lambda.handleHttpSignUp # highlight-line
+    events:
+      - httpApi:
+          path: signup/{db}
+          method: POST
+      - httpApi:
+          path: signup/{db}
+          method: GET
+
   authorizer:
     # Make sure your file path is correct!
     # (e.g., if your file is in the root folder use server.graphqlHandler )
