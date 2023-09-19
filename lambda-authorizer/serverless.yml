@@ -11,6 +11,9 @@ provider:
     GOOGLE_CLIENT_SECRET: ${file(./config/${self:provider.stage}.json):google.client_secret}
     GOOGLE_REDIRECT_URL: ${file(./config/${self:provider.stage}.json):google.redirect_url}
     GOOGLE_SCOPES: ${file(./config/${self:provider.stage}.json):google.scopes}
+    MONGODB_URL: ${file(./config/${self:provider.stage}.json):mongodb.url}
+    MONGODB_DB_NAME: ${file(./config/${self:provider.stage}.json):mongodb.db.name}
+    MONGODB_COLLECTION_USERS: ${file(./config/${self:provider.stage}.json):mongodb.collection.users}
   httpApi:
     cors: true
 functions:
@@ -23,9 +26,6 @@ functions:
       - httpApi:
           path: signup/{db}
           method: POST
-      - httpApi:
-          path: signup/{db}
-          method: GET
 
   authorizer:
     # Make sure your file path is correct!

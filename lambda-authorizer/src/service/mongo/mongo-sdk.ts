@@ -1,26 +1,35 @@
-import { MongoClient, Collection } from "mongodb";
+import { MongoClient } from "mongodb";
 
-const url = "mongodb://localhost:27017"; // URL de tu servidor MongoDB
-const client = new MongoClient(url);
-let usersCollection: Collection<any>;
+const {
+  MONGODB_URL = "",
+  MONGODB_DB_NAME = "",
+  MONGODB_COLLECTION_USERS = "",
+} = process.env;
 
+// Crea una instancia del cliente MongoDB fuera de las funciones
+const client = new MongoClient(MONGODB_URL);
+
+// Función para conectar a MongoDB
 async function connectToMongo() {
-  await client.connect();
-  const db = client.db("gestion"); // Reemplaza 'mydb' con el nombre de tu base de datos
-  usersCollection = db.collection<any>("users");
-  return usersCollection;
+  try {
+    await client.connect();
+    console.log("Conectado a MongoDB");
+  } catch (error) {
+    console.error("Error al conectar a MongoDB:", error);
+    // Manejar el error adecuadamente, por ejemplo, lanzar una excepción o detener la aplicación.
+  }
 }
 
-const signUpMongodb = async (user) => {
-  const usersCollection = await connectToMongo();
-  const res = async function insertUser() {
-    const result = await usersCollection.insertOne(user);
-    console.log(`Usuario insertado con ID: ${result.insertedId}`);
-  };
+// Llamada a la función de conexión al inicio de la aplicación o en la función lambda
+connectToMongo();
 
-  return await res();
+// Función para realizar la inserción en la base de datos
+const signUpMongodb = async (user) => {
+  const db = client.db(MONGODB_DB_NAME);
+  const usersCollection = db.collection<any>(MONGODB_COLLECTION_USERS);
+  const result = await usersCollection.insertOne(user);
+  console.log(`Usuario insertado con ID: ${result.insertedId}`);
+  return result;
 };
 
-// Llama a connectToMongo para establecer la conexión antes de usar usersCollection.
-
-export { connectToMongo, signUpMongodb };
+export { signUpMongodb, connectToMongo };

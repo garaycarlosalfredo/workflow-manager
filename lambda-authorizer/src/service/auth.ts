@@ -1,14 +1,6 @@
 import { isNil } from "ramda";
-import { signUpMongodb } from "./mongo/mongo-sdk";
 
-const clientDb = {
-  mongodb: {
-    signUp: signUpMongodb,
-  },
-};
-
-const signUp = async (db, user) => {
-  const client = clientDb[db];
+const signUp = async (client, user) => {
   if (isNil(client)) throw new Error("no implementado");
   return client.signUp(user);
 };

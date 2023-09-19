@@ -1,6 +1,7 @@
 import { compose, partial } from "ramda";
 import { signUpHandler } from "./sign-up/sign-up-handler";
 import { signUp } from "./service/auth";
+import { signUpMongodb } from "./service/mongo/mongo-sdk";
 
 /**
  * Builds an AWS λ handler function from the given `config` and injects required dependencies into its context.
@@ -14,7 +15,14 @@ const createAddUserHttpEventHandler = (config) => {
     const {
       pathParameters: { db },
     } = event;
-    return handler(event, { ...context, signUp: partial(signUp, [db]) });
+    return handler(event, {
+      ...context,
+      signUp: partial(signUp, [
+        {
+          signUp: signUpMongodb,
+        },
+      ]),
+    });
   };
 
   return compose(functionInjectSignUp)(signUpHandler);
