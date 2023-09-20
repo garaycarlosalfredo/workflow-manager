@@ -7,9 +7,8 @@ const eventGoogleApiCode = (event) => {
   return event.queryStringParameters.code;
 };
 
-const getOauth2IdToken = codeToken =>{
-  return codeToken.tokens.id_token
-}
+const getOauth2IdToken = (codeToken) => {
+  return codeToken.tokens.id_token;
+};
 
-
-module.exports = { eventBody ,eventGoogleApiCode,getOauth2IdToken};
+export { eventBody, eventGoogleApiCode, getOauth2IdToken };

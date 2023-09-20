@@ -139,6 +139,7 @@ yarn-error.log*
 # Ignore built ts files
 */.dist/**/*
 */.build/**/*
+.build/
 
 #Enviroment variable
 */config/dev.json
