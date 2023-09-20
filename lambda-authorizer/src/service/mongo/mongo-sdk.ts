@@ -6,30 +6,33 @@ const {
   MONGODB_COLLECTION_USERS = "",
 } = process.env;
 
-// Crea una instancia del cliente MongoDB fuera de las funciones
+/**
+ * MongoDB client instance used to connect to the database.
+ * @type {MongoClient}
+ */
 const client = new MongoClient(MONGODB_URL);
 
-// Función para conectar a MongoDB
-async function connectToMongo() {
+/**
+ * Registers a user in the MongoDB database.
+ *
+ * @param {Object} user - The user data to be registered.
+ * @param {string} user.username - The username of the user.
+ * @param {string} user.email - The email address of the user.
+ * @returns {Promise<Object>} - A promise that resolves with the result of the insertion operation.
+ * @throws {Error} - Throws an error if any issues occur during the operation.
+ */
+const signUpMongodb = async (user) => {
   try {
     await client.connect();
-    console.log("Conectado a MongoDB");
+    const db = client.db(MONGODB_DB_NAME);
+    const usersCollection = db.collection<any>(MONGODB_COLLECTION_USERS);
+    const result = await usersCollection.insertOne(user);
+    return result;
   } catch (error) {
-    console.error("Error al conectar a MongoDB:", error);
-    // Manejar el error adecuadamente, por ejemplo, lanzar una excepción o detener la aplicación.
+    console.error("Error", error); // (TODO) improve error logger
+  } finally {
+    await client.close();
   }
-}
-
-// Llamada a la función de conexión al inicio de la aplicación o en la función lambda
-connectToMongo();
-
-// Función para realizar la inserción en la base de datos
-const signUpMongodb = async (user) => {
-  const db = client.db(MONGODB_DB_NAME);
-  const usersCollection = db.collection<any>(MONGODB_COLLECTION_USERS);
-  const result = await usersCollection.insertOne(user);
-  console.log(`Usuario insertado con ID: ${result.insertedId}`);
-  return result;
 };
 
-export { signUpMongodb, connectToMongo };
+export { signUpMongodb };
