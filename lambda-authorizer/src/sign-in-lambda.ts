@@ -1,6 +1,6 @@
 import { compose, partial } from "ramda";
 import { signInHandler } from "./sign-in/sign-in-handler";
-import { signIn } from "./service/auth";
+import { signIn } from "./auth";
 
 /**
  * Builds an AWS λ handler function from the given `config` and injects required dependencies into its context.

@@ -14,6 +14,7 @@ provider:
     MONGODB_URL: ${file(./config/${self:provider.stage}.json):mongodb.url}
     MONGODB_DB_NAME: ${file(./config/${self:provider.stage}.json):mongodb.db.name}
     MONGODB_COLLECTION_USERS: ${file(./config/${self:provider.stage}.json):mongodb.collection.users}
+    MONGODB_COLLECTION_SESSIONS: ${file(./config/${self:provider.stage}.json):mongodb.collection.sessions}
   httpApi:
     cors: true
 functions:
