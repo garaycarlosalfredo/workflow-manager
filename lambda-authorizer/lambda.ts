@@ -6,8 +6,10 @@
  */
 
 import createSignUpHttpEventHandler from "./src/sign-up-lambda";
+import createSignInHttpEventHandler from "./src/sign-in-lambda";
 import config from "./src/config/config";
 
 const handleHttpSignUp = createSignUpHttpEventHandler(config);
+const handleHttpSignIn = createSignInHttpEventHandler(config);
 
-export { handleHttpSignUp };
+export { handleHttpSignUp, handleHttpSignIn };

@@ -1,5 +1,5 @@
 import { equals } from "ramda";
-import { signUpMongodb } from "./mongo/mongo-sdk";
+import { signUpMongodb, signInMongodb } from "./mongo/mongo-sdk";
 
 /**
  * Registers a user in the selected database.
@@ -14,4 +14,9 @@ const signUp = async (db, user) => {
   throw new Error("not valid db found"); // (TODO) improve the error handler
 };
 
-export { signUp };
+const signIn = async (db, user) => {
+  if (equals("mongodb", db)) return await signInMongodb(user);
+  throw new Error("not valid db found"); // (TODO) improve the error handler
+};
+
+export { signUp, signIn };

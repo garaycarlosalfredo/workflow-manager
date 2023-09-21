@@ -26,6 +26,12 @@ functions:
       - httpApi:
           path: signup/{db}
           method: POST
+  sign-in:
+    handler: lambda.handleHttpSignIn
+    events:
+      - httpApi:
+          path: signin/{db}
+          method: POST
 
   authorizer:
     # Make sure your file path is correct!

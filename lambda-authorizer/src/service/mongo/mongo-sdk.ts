@@ -29,10 +29,52 @@ const signUpMongodb = async (user) => {
     const result = await usersCollection.insertOne(user);
     return result;
   } catch (error) {
-    console.error("Error", error); // (TODO) improve error logger
+    console.error("Error during user sign-up", error); // (TODO) improve error logger
+    throw new Error("Error during user sign-up" + error?.message); // (TODO) improve error handle
   } finally {
     await client.close();
   }
 };
 
-export { signUpMongodb };
+const TTL = new Date(Date.now() + 1 * 60 * 1000);
+
+const createSession = async (user) => {
+  try {
+    await client.connect();
+    const db = client.db(MONGODB_DB_NAME);
+    const usersCollection = db.collection<any>("sessions");
+    usersCollection.createIndex({ expireAt: 1 }, { expireAfterSeconds: 0 });
+    const result = await usersCollection.insertOne({
+      ...user,
+      expireAt: TTL,
+    });
+    return result;
+  } catch (error) {
+    console.error("Error on session creation", error); // (TODO) improve error logger
+    throw new Error("Error on session creation" + error?.message); // (TODO) improve error handle
+  } finally {
+    await client.close();
+  }
+};
+
+const signInMongodb = async (user) => {
+  try {
+    await client.connect();
+    const db = client.db(MONGODB_DB_NAME);
+    const usersCollection = db.collection<any>(MONGODB_COLLECTION_USERS);
+
+    const params = { email: user.email, password: user.password };
+    const userResponse = await usersCollection.findOne(params);
+    if (!userResponse) return userResponse;
+    userResponse.token = "TOKEN MAGICO";
+    await createSession(userResponse);
+    return userResponse;
+  } catch (error) {
+    console.error("Error during user sign-in", error); // (TODO) improve error logger
+    throw new Error("Error during user sign-in" + error?.message); // (TODO) improve error handle
+  } finally {
+    await client.close();
+  }
+};
+
+export { signUpMongodb, signInMongodb };
