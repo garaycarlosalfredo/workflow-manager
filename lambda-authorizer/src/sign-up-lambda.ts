@@ -1,4 +1,4 @@
-import { compose, partial } from "ramda";
+import { partial } from "ramda";
 import { signUpHandler } from "./sign-up/sign-up-handler";
 import { signUp } from "./auth";
 
@@ -20,7 +20,7 @@ const createSignUpHttpEventHandler = (config) => {
     });
   };
 
-  return compose(functionInjectSignUp)(signUpHandler);
+  return functionInjectSignUp(signUpHandler);
 };
 
 export default createSignUpHttpEventHandler;

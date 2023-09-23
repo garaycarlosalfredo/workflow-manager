@@ -1,4 +1,4 @@
-import { compose, partial } from "ramda";
+import { partial } from "ramda";
 import { validationHandler } from "./sign-validation/validation-handler";
 import { validation } from "./auth";
 
@@ -15,7 +15,7 @@ const createVerificationEventHandler = (config) => {
     });
   };
 
-  return compose(functionInjectValidation)(validationHandler);
+  return functionInjectValidation(validationHandler);
 };
 
 export default createVerificationEventHandler;

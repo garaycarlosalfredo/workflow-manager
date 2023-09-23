@@ -2,7 +2,7 @@ service: test-lambda-authorizer
 provider:
   name: aws
   stage: ${opt:stage, 'dev'}
-  runtime: nodejs16.x
+  runtime: nodejs18.x
   environment:
     APP_VERSION: ${file(./package.json):version}
     APP_ENV: ${self:provider.stage}
@@ -26,19 +26,19 @@ functions:
     handler: lambda.handleHttpSignUp
     events:
       - httpApi:
-          path: signup/{db}
+          path: /signup/{db}
           method: POST
   sign-in:
     handler: lambda.handleHttpSignIn
     events:
       - httpApi:
-          path: signin/{db}
+          path: /signin/{db}
           method: POST
   sign-validation:
     handler: lambda.handleHttpValidation
     events:
       - httpApi:
-          path: auth/{db}
+          path: /auth/{db}
           method: POST
 
   authorizer:
@@ -48,10 +48,10 @@ functions:
     handler: src/authorizer.authorizerHandler # highlight-line
     events:
       - httpApi:
-          path: login/
+          path: /login/
           method: POST
       - httpApi:
-          path: login/
+          path: /login/
           method: GET
 
   urlGenerator:
@@ -61,10 +61,10 @@ functions:
     handler: src/media-login.mediaLoginHandler # highlight-line
     events:
       - httpApi:
-          path: google/
+          path: /google/
           method: POST
       - httpApi:
-          path: google/
+          path: /google/
           method: GET
 # Omit the following lines if you aren't using TS!
 plugins:

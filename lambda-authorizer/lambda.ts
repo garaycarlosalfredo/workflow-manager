@@ -1,6 +1,6 @@
 /**
- * AWS λ lambda user service
- * This lambda contents all the handlers to interact with users table.
+ * AWS λ lambda authorization service
+ * This lambda contents all the handlers to identify and authorize the user transactions.
  *
  * @module lambda-authorizer
  */
