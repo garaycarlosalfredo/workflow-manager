@@ -9,6 +9,7 @@ import { signIn } from "./auth";
  * @returns {Function} An AWS λ handler functions.
  */
 const createSignInHttpEventHandler = (config) => {
+  const { jwt } = config;
   // inject signUp AWS SDK put
   const functionInjectSignUp = (handler) => (event, context) => {
     const {
@@ -16,7 +17,7 @@ const createSignInHttpEventHandler = (config) => {
     } = event;
     return handler(event, {
       ...context,
-      signIn: partial(signIn, [db]),
+      signIn: partial(signIn, [db, jwt]),
     });
   };
 

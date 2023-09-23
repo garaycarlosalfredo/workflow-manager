@@ -1,8 +1,8 @@
 const signUpHandler = async (event, context) => {
   const { body } = event;
-  const user = JSON.parse(body);
   const { signUp } = context;
-  const response = await signUp(user);
+  // (TODO) handle errors
+  const response = await signUp(JSON.parse(body));
   return {
     message:
       "Go Serverless v3! Your function executed successfully from lambda user!",

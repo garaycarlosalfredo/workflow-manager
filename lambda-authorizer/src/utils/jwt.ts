@@ -1,21 +1,17 @@
 import { omit } from "ramda";
 const jwt = require("jsonwebtoken");
-const secretKey = "tu_clave_secreta"; // (TODO) use env
-const algorithmUsed = "HS256"; // (TODO) use env
 
-const payloadFormatter = omit(["password"]);
-
-const createToken = (payload) => {
-  return jwt.sign(payloadFormatter(payload), secretKey, {
-    expiresIn: "1m",
-    algorithm: algorithmUsed,
+const createToken = (config, payload: object) => {
+  return jwt.sign(payload, config.secretKey, {
+    expiresIn: "5m",
+    algorithm: config.algorithm,
   });
 };
 
-function verifyToken(token) {
+function verifyToken(config, token) {
   try {
-    const decoded = jwt.verify(token, secretKey, {
-      algorithms: [algorithmUsed],
+    const decoded = jwt.verify(token, config.secretKey, {
+      algorithms: [config.algorithm],
     });
     console.log("[decoded?]" + decoded);
     return decoded;

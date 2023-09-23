@@ -7,22 +7,23 @@ provider:
     APP_VERSION: ${file(./package.json):version}
     APP_ENV: ${self:provider.stage}
     APP_TEST: ${file(./config/${self:provider.stage}.json):aws.test}
+    CONFIG_JWT_KEY: ${file(./config/${self:provider.stage}.json):config.jwt.key}
+    CONFIG_JWT_ALGORITHM: ${file(./config/${self:provider.stage}.json):config.jwt.algorithm}
+    CONFIG_JWT_EXPIRATION: ${file(./config/${self:provider.stage}.json):config.jwt.expiration}
     GOOGLE_CLIENT_ID: ${file(./config/${self:provider.stage}.json):google.client_id}
     GOOGLE_CLIENT_SECRET: ${file(./config/${self:provider.stage}.json):google.client_secret}
     GOOGLE_REDIRECT_URL: ${file(./config/${self:provider.stage}.json):google.redirect_url}
     GOOGLE_SCOPES: ${file(./config/${self:provider.stage}.json):google.scopes}
     MONGODB_URL: ${file(./config/${self:provider.stage}.json):mongodb.url}
     MONGODB_DB_NAME: ${file(./config/${self:provider.stage}.json):mongodb.db.name}
-    MONGODB_COLLECTION_USERS: ${file(./config/${self:provider.stage}.json):mongodb.collection.users}
+    MONGODB_COLLECTION_ADMIN: ${file(./config/${self:provider.stage}.json):mongodb.collection.admin}
     MONGODB_COLLECTION_SESSIONS: ${file(./config/${self:provider.stage}.json):mongodb.collection.sessions}
+    SERVICE_USERS_URL: ${file(./config/${self:provider.stage}.json):service.lambdaUsers.url}
   httpApi:
     cors: true
 functions:
   sign-up:
-    # Make sure your file path is correct!
-    # (e.g., if your file is in the root folder use server.graphqlHandler )
-    # The format is: <FILENAME>.<HANDLER>
-    handler: lambda.handleHttpSignUp # highlight-line
+    handler: lambda.handleHttpSignUp
     events:
       - httpApi:
           path: signup/{db}
@@ -32,6 +33,12 @@ functions:
     events:
       - httpApi:
           path: signin/{db}
+          method: POST
+  sign-validation:
+    handler: lambda.handleHttpValidation
+    events:
+      - httpApi:
+          path: auth/{db}
           method: POST
 
   authorizer:

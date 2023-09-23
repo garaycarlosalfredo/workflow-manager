@@ -3,7 +3,9 @@ import {
   signUpMongodb,
   signInMongodb,
   createSession,
+  verifySession,
 } from "./service/mongo/mongo-sdk";
+import { createToken, verifyToken } from "./utils/jwt";
 
 /**
  * Registers a user in the selected database.
@@ -18,20 +20,23 @@ const signUp = async (db, user) => {
   throw new Error("not valid db found"); // (TODO) improve the error handler
 };
 
-const signIn = async (db, user) => {
+const signIn = async (db, config, user) => {
   if (equals("mongodb", db)) {
     const userResponse = await signInMongodb(user);
-    return await createSession(userResponse);
+    const sessionId = await createSession(userResponse);
+    const token = createToken(config, { sessionId });
+    return token;
   }
   throw new Error("not valid db found"); // (TODO) improve the error handler
 };
 
-const verifyUser = async (db, user) => {
+const validation = async (db, config, token) => {
   if (equals("mongodb", db)) {
-    const userResponse = await signInMongodb(user);
-    return await createSession(userResponse);
+    const tokenData = await verifyToken(config, token);
+    const isValid = await verifySession(tokenData);
+    return isValid ? true : false;
   }
   throw new Error("not valid db found"); // (TODO) improve the error handler
 };
 
-export { signUp, signIn, verifyUser };
+export { signUp, signIn, validation };
