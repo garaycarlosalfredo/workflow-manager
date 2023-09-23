@@ -1,6 +1,6 @@
 import { partial } from "ramda";
-import { signUpHandler } from "./sign-up/sign-up-handler";
-import { signUp } from "./auth";
+import { signInHandler } from "./sign-in/sign-in-handler";
+import { signIn } from "./auth";
 
 /**
  * Builds an AWS λ handler function from the given `config` and injects required dependencies into its context.
@@ -8,7 +8,8 @@ import { signUp } from "./auth";
  * @param {object} config A configuration object.
  * @returns {Function} An AWS λ handler functions.
  */
-const createSignUpHttpEventHandler = (config) => {
+const createSignInHttpEventHandler = (config) => {
+  const { jwt } = config;
   // inject signUp AWS SDK put
   const functionInjectSignUp = (handler) => (event, context) => {
     const {
@@ -16,11 +17,11 @@ const createSignUpHttpEventHandler = (config) => {
     } = event;
     return handler(event, {
       ...context,
-      signUp: partial(signUp, [db]),
+      signIn: partial(signIn, [db, jwt]),
     });
   };
 
-  return functionInjectSignUp(signUpHandler);
+  return functionInjectSignUp(signInHandler);
 };
 
-export default createSignUpHttpEventHandler;
+export default createSignInHttpEventHandler;
