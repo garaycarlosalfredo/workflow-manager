@@ -1,6 +1,8 @@
 const userHandler = async (event, context) => {
   const { createUser } = context;
-  await createUser({ a: "A" });
+  const { body } = event;
+  const user = JSON.parse(body);
+  await createUser(user);
   return {
     message:
       "Go Serverless v3! Your function executed successfully from lambda user Real!",
