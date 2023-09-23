@@ -1,5 +1,5 @@
 import { equals } from "ramda";
-import { createUserMongodb } from "./service/db/mongo/mongo-sdk";
+import { createUserMongodb } from "./service/db/mongodb/mongo-sdk";
 
 const createUser = async (db, user) => {
   if (equals("mongodb", db)) {

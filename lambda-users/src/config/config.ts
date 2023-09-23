@@ -14,7 +14,7 @@ const config = Object.freeze({
     mongodb: {
       url: MONGODB_DB_URL,
       name: MONGODB_DB_NAME,
-      colection: MONGODB_DB_COLLECTION_USERS,
+      collection: MONGODB_DB_COLLECTION_USERS,
     },
   },
 });

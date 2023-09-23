@@ -1,4 +1,4 @@
-import { getUserById, findUserByEmail } from "../service/user-db";
+import { getUserById, findUserByEmail } from "../service/db/dynamodb/user-db";
 
 const userHandler = async (event, context) => {
   // console.info("event", event);
