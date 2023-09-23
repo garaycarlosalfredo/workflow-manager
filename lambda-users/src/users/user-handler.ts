@@ -1,4 +1,4 @@
-import { getUserById, findUserByEmail } from "../Service/user-db";
+import { getUserById, findUserByEmail } from "../service/user-db";
 
 const userHandler = async (event, context) => {
   // console.info("event", event);

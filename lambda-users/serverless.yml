@@ -8,6 +8,9 @@ provider:
     APP_VERSION: ${file(./package.json):version}
     TABLE_USERS: ${file(./config/${self:provider.stage}.json):aws.dynamo.users}
     IS_LOCAL: ${param:isLocal, 'false'}
+    MONGODB_DB_URL: ${file(./config/${self:provider.stage}.json):database.mongodb.url}
+    MONGODB_DB_NAME: ${file(./config/${self:provider.stage}.json):database.mongodb.tableName}
+    MONGODB_DB_COLLECTION_USERS: ${file(./config/${self:provider.stage}.json):database.mongodb.collection}
   httpApi:
     cors: true
   iamRoleStatements:
@@ -19,6 +22,12 @@ provider:
           - UserTable
           - Arn
 functions:
+  http-crete-user:
+    handler: lambda.handleHttpCreateUser
+    events:
+      - httpApi:
+          path: /create/{db}
+          method: POST
   http-user:
     # Make sure your file path is correct!
     # (e.g., if your file is in the root folder use server.graphqlHandler )

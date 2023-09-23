@@ -6,6 +6,13 @@
             "users": "local-users"
         }
     },
+    "database": {
+        "mongodb": {
+            "url": "mongodb://localhost:27017",
+            "tableName": "gestion",
+            "collection": "users"
+        }
+    },
     "lambdaAuthorizer": {
         "url": "http://localhost:5000"
     },
