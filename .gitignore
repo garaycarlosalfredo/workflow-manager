@@ -131,6 +131,7 @@ yarn-error.log*
 #plugin [serverless-esbuild]
 # Ignore esbuilt files
 */.esbuild/**/*
+.esbuild/
 
 # added for create react app typescript end
 

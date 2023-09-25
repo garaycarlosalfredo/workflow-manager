@@ -1,7 +1,7 @@
 import { partial, compose } from "ramda";
-import { userHandler } from "./user/get/get-user-handler";
-import { querySchema, pathSchema } from "./user/get/get-user-schema";
-import { getUserByPersonalId } from "./user";
+import { userHandler } from "./user/create/create-user-handler";
+import { userSchema, pathSchema } from "./user/create/create-user-Schema";
+import { createUser } from "./user";
 
 /**
  * Builds an AWS λ handler function from the given `config` and injects required dependencies into its context.
@@ -9,7 +9,7 @@ import { getUserByPersonalId } from "./user";
  * @param {object} config A configuration object.
  * @returns {Function} An AWS λ handler functions.
  */
-const getUserHttpEventHandler = (config) => {
+const createSignInHttpEventHandler = (config) => {
   const {
     database: { supportedDatabase },
   } = config;
@@ -20,16 +20,17 @@ const getUserHttpEventHandler = (config) => {
     } = event;
     return handler(event, {
       ...context,
-      getUserByPersonalId: partial(getUserByPersonalId, [db]),
+      createUser: partial(createUser, [db]),
     });
   };
 
   const yupValidation = (handler) => async (event, context) => {
     // Validate de data with yup
-    const { pathParameters, queryStringParameters } = event;
+    const { body, pathParameters } = event;
 
+    const user = JSON.parse(body);
     try {
-      await querySchema.validate(queryStringParameters);
+      await userSchema.validate(user);
       await pathSchema.validate(pathParameters);
       return handler(event, context);
     } catch (error) {
@@ -41,4 +42,4 @@ const getUserHttpEventHandler = (config) => {
   return compose(functionInjectSignUp, yupValidation)(userHandler);
 };
 
-export default getUserHttpEventHandler;
+export default createSignInHttpEventHandler;

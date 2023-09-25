@@ -1,6 +1,6 @@
 import { compose } from "ramda";
 import { addUserHandler } from "./users/add-user-handler";
-import { addUser } from "./Service/user-db";
+import { addUser } from "./service/db/dynamodb/user-db";
 
 /**
  * Builds an AWS λ handler function from the given `config` and injects required dependencies into its context.
