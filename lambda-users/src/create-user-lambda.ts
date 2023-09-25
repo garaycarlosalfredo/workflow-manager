@@ -1,6 +1,6 @@
 import { partial, compose } from "ramda";
 import { userHandler } from "./user/create/create-user-handler";
-import { userSchema } from "./user/create/create-user-Schema";
+import { userSchema, pathSchema } from "./user/create/create-user-Schema";
 import { createUser } from "./user";
 
 /**
@@ -10,6 +10,9 @@ import { createUser } from "./user";
  * @returns {Function} An AWS λ handler functions.
  */
 const createSignInHttpEventHandler = (config) => {
+  const {
+    database: { supportedDatabase },
+  } = config;
   // inject required functions and data to the context
   const functionInjectSignUp = (handler) => (event, context) => {
     const {
@@ -21,12 +24,14 @@ const createSignInHttpEventHandler = (config) => {
     });
   };
 
-  const yupValidation = (handler) => (event, context) => {
+  const yupValidation = (handler) => async (event, context) => {
     // Validate de data with yup
-    const { body } = event;
+    const { body, pathParameters } = event;
+
     const user = JSON.parse(body);
     try {
-      userSchema.validate(user);
+      await userSchema.validate(user);
+      await pathSchema.validate(pathParameters);
       return handler(event, context);
     } catch (error) {
       // (TODO) make better yup validation errors

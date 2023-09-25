@@ -37,4 +37,22 @@ const createUserMongodb = async (user) => {
   }
 };
 
-export { createUserMongodb };
+const getUserByNumberIdMongodb = async (numberId) => {
+  try {
+    console.log("[numberId]", numberId);
+    await client.connect();
+    const db = client.db(MONGODB_DB_NAME);
+    const usersCollection = db.collection<any>(MONGODB_DB_COLLECTION_USERS);
+    const params = {
+      numberId,
+    };
+    return await usersCollection.findOne(params);
+  } catch (error) {
+    console.error("Error during user sign-in", error); // (TODO) improve error logger
+    throw new Error("Error during user sign-in" + error?.message); // (TODO) improve error handle
+  } finally {
+    await client.close();
+  }
+};
+
+export { createUserMongodb, getUserByNumberIdMongodb };

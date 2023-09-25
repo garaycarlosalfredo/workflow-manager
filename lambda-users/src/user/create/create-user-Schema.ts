@@ -10,4 +10,8 @@ let userSchema = object({
   createDate: date().default(() => new Date()),
 });
 
-export { userSchema };
+let pathSchema = object({
+  db: string().oneOf(["mongodb"]),
+});
+
+export { userSchema, pathSchema };

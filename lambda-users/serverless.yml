@@ -28,17 +28,11 @@ functions:
       - httpApi:
           path: /create/{db}
           method: POST
-  http-user:
-    # Make sure your file path is correct!
-    # (e.g., if your file is in the root folder use server.graphqlHandler )
-    # The format is: <FILENAME>.<HANDLER>
-    handler: lambda.handleHttpUsers # highlight-line
+  http-get-user:
+    handler: lambda.handleHttpGetUser
     events:
       - httpApi:
-          path: /
-          method: POST
-      - httpApi:
-          path: /
+          path: /user/{db}
           method: GET
   http-add-user:
     # Make sure your file path is correct!
